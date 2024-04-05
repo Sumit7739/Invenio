@@ -91,6 +91,32 @@
       color: #555;
   }
 
+   select {
+       padding: 2px;
+       font-size: 16px;
+       border: 1px solid #ccc;
+       border-radius: 4px;
+       box-sizing: border-box;
+       width: 17%;
+       margin-bottom: 10px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+   }
+
+   select option {
+       padding: 5px;
+   }
+
+   #ldSomaSection select{
+    width: 22%;
+   }
+   #cupsSection select{
+    width: 22%;
+   }
+
+   #coverSection select{
+    width: 22%;
+   }
+   
   input[type="text"],
   input[type="number"],
   input[type="date"],
@@ -106,7 +132,7 @@
   }
 
   input[type="number"] {
-      width: 50%;
+      width: 45%;
   }
 
   .container label,
