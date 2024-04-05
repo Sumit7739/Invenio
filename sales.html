@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <div class="form-container">
+        <button class="toggle-button" onclick="toggleMode()">
+            <i id="darkModeIcon" class="fas fa-moon"></i>
+        </button>
+        <a href="index.html" class="toggle-buttons">
+            <i id="homeIcon" class="fas fa-home"></i>
+        </a>
+
+        <h1>Sales</h1>
+        <h2>Enter Items</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required><br><br>
+
+
+            <label for="blackLooseToggle" onclick="toggleBlackLoose()"
+                style="color:#ff7300; font-weight: bold; font-size: 20px; cursor: pointer;">Black
+                Loose <span id="toggleIcon">▼</span></label><br>
+            <div id="blackLooseSection" class="container">
+                <label for="bl5">5-inch BL:</label>
+                <input type="number" id="bl5" name="bl5"><br>
+                <label for="bl6">6-inch BL:</label>
+                <input type="number" id="bl6" name="bl6"><br>
+                <label for="bl7">7-inch BL:</label>
+                <input type="number" id="bl7" name="bl7"><br>
+                <label for="bl9">9-inch BL:</label>
+                <input type="number" id="bl9" name="bl9"><br><br>
+            </div>
+            <hr>
+
+            <!-- Star Packet section -->
+            <label for="starPacketToggle" onclick="toggleStarPacket()"
+                style=" font-weight: bold; font-size: 20px; cursor: pointer;">Star Packet <span
+                    id="toggleIcon">▼</span></label><br>
+            <div id="starPacketSection" class="container">
+                <label for="sp5">5-inch SP:</label>
+                <input type="number" id="sp5" name="sp5"><br>
+                <label for="sp6">6-inch SP:</label>
+                <input type="number" id="sp6" name="sp6"><br>
+                <label for="sp7">7-inch SP:</label>
+                <input type="number" id="sp7" name="sp7"><br>
+                <label for="sp9">9-inch SP:</label>
+                <input type="number" id="sp9" name="sp9"><br><br>
+            </div>
+            <hr>
+
+            <label for="wlToggle" class="toggle-label" onclick="toggleWhiteLoose()"
+                style=" font-weight: bold; font-size: 20px; cursor: pointer;">White Loose <span
+                    id="wlToggleIcon">▼</span></label><br>
+            <div id="whiteLooseSection" class="container">
+                <label for="wl5">5-inch WL:</label>
+                <input type="number" id="wl5" name="wl5"><br>
+                <label for="wl6">6-inch WL:</label>
+                <input type="number" id="wl6" name="wl6"><br>
+                <label for="wl7">7-inch WL:</label>
+                <input type="number" id="wl7" name="wl7"><br>
+                <label for="wl9">9-inch WL:</label>
+                <input type="number" id="wl9" name="wl9"><br><br>
+            </div>
+            <hr>
+
+            <label for="ldSomaToggle" class="toggle-label" onclick="toggleLDSoma()"
+                style=" font-weight: bold; font-size: 20px; cursor: pointer;">L/D SOMA <span
+                    id="ldSomaToggleIcon">▼</span></label><br>
+            <div id="ldSomaSection" class="container">
+                <label for="ld8">8-inch L/D Soma:</label>
+                <input type="number" id="ld8" name="ld8"><br>
+                <label for="ld9">9-inch L/D Soma:</label>
+                <input type="number" id="ld9" name="ld9"><br>
+                <label for="ld11">11-inch L/D Soma:</label>
+                <input type="number" id="ld11" name="ld11"><br>
+                <label for="dld">DLD:</label>
+                <input type="number" id="dld" name="dld"><br>
+                <label for="pp">PP:</label>
+                <input type="number" id="pp" name="pp"><br><br>
+            </div>
+            <hr>
+
+            <label for="cupsToggle" class="toggle-label" onclick="toggleCups()"
+                style=" font-weight: bold; font-size: 20px; cursor: pointer;">CUPS <span
+                    id="cupsToggleIcon">▼</span></label><br>
+            <div id="cupsSection" class="container">
+                <label for="cups50">50ml Cups:</label>
+                <input type="number" id="cups50" name="cups50"><br>
+                <label for="cups60">60ml Cups:</label>
+                <input type="number" id="cups60" name="cups60"><br>
+                <label for="cups80">80ml Cups:</label>
+                <input type="number" id="cups80" name="cups80"><br>
+                <label for="cups100">100ml Cups:</label>
+                <input type="number" id="cups100" name="cups100"><br>
+                <label for="cups150">150ml Cups:</label>
+                <input type="number" id="cups150" name="cups150"><br>
+                <label for="cups210">210ml Cups:</label>
+                <input type="number" id="cups210" name="cups210"><br>
+                <label for="cups250">250ml Cups:</label>
+                <input type="number" id="cups250" name="cups250"><br><br>
+            </div>
+            <hr>
+
+            <label for="blackDelhiToggle" class="toggle-label" onclick="toggleBlackDelhi()"
+                style=" font-weight: bold; font-size: 20px; cursor: pointer;">Black Delhi <span
+                    id="blackDelhiToggleIcon">▼</span></label><br>
+            <div id="blackDelhiSection" class="container">
+                <label for="bd5">5-inch Black Delhi:</label>
+                <input type="number" id="bd5" name="bd5"><br>
+                <label for="bd6">6-inch Black Delhi:</label>
+                <input type="number" id="bd6" name="bd6"><br>
+                <label for="bd7">7-inch Black Delhi:</label>
+                <input type="number" id="bd7" name="bd7"><br><br>
+            </div>
+            <hr>
+
+            <label for="coverToggle" class="toggle-label" onclick="toggleCover()"
+                style=" font-weight: bold; font-size: 20px; cursor: pointer;">COVER <span
+                    id="coverToggleIcon">▼</span></label><br>
+            <div id="coverSection" class="container">
+                <label for="cp5">5-inch Cover:</label>
+                <input type="number" id="cp5" name="cp5"><br>
+                <label for="cp6">6-inch Cover:</label>
+                <input type="number" id="cp6" name="cp6"><br>
+                <label for="cp7">7-inch Cover:</label>
+                <input type="number" id="cp7" name="cp7"><br>
+                <label for="cp9">9-inch Cover:</label>
+                <input type="number" id="cp9" name="cp9"><br><br>
+            </div>
+            <hr>
+
+            <input type="submit" value="Submit">
+        </form>
+        <a href="invent.html">Go To Inventory</a>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
