@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Toggleable Container</title>
     <style>
         .container {
+            height: auto;
             margin-top: 20px;
             padding: 5px 15px;
             border: 1px solid #ccc;
@@ -39,18 +41,28 @@
             cursor: pointer;
         }
 
+        .toggle-buttons {
+            position: absolute;
+            top: 3%;
+            right: 0;
+            margin-right: 30px;
+            width: 50px;
+            cursor: pointer;
+            font-size: 30px;
+        }
 
         .toggle-btn {
-            width: 80%;
+            width: 60%;
+            height: 35px;
             position: relative;
-            margin-left: 50px;
+            margin: 0 auto;
             padding: 12px 16px;
             background-color: #007bff;
             border: none;
             cursor: pointer;
             border-radius: 20px;
-            margin-top: 50px;
-            margin-bottom: 40px;
+            margin-top: 65px;
+            margin-bottom: 20px;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         }
 
@@ -91,8 +103,13 @@
 </head>
 
 <body>
+   <div class="content-row">
     <button type="button" class="toggle-btn"><a href="invent.html">CREATE NEW</a></button>
-
+    <a href="index.html" class="toggle-buttons">
+        <i id="homeIcon" class="fas fa-home"></i>
+    </a>
+    <br>
+   </div>
     <input type="date" id="calendar">
     <button id="search-btn">Search</button>
     <hr>
