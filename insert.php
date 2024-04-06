@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Prepare and bind SQL statement for inventory_items table
-    $stmt_items = $conn->prepare("INSERT INTO inventory_items (name, date, bl5, bl6, bl7, bl9, sp5, sp6, sp7, sp9, wl5, wl6, wl7, wl9, ld8, ld9, ld11, dld, pp, cups50, cups60, cups80, cups100, cups150, cups210, cups250, bd5, bd6, bd7, cp5, cp6, cp7, cp9)
+    $stmt_items = $conn->prepare("INSERT INTO inventory_item (name, date, bl5, bl6, bl7, bl9, sp5, sp6, sp7, sp9, wl5, wl6, wl7, wl9, ld8, ld9, ld11, dld, pp, cups50, cups60, cups80, cups100, cups150, cups210, cups250, bd5, bd6, bd7, cp5, cp6, cp7, cp9)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt_items->bind_param("ssiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii", $name, $date, $bl5, $bl6, $bl7, $bl9, $sp5, $sp6, $sp7, $sp9, $wl5, $wl6, $wl7, $wl9, $ld8, $ld9, $ld11, $dld, $pp, $cups50, $cups60, $cups80, $cups100, $cups150, $cups210, $cups250, $bd5, $bd6, $bd7, $cp5, $cp6, $cp7, $cp9);
 
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $item_id = $conn->insert_id;
 
     // Prepare and bind SQL statement for inventory_units table
-    $stmt_units = $conn->prepare("INSERT INTO inventory_units (item_id, bl5_unit, bl6_unit, bl7_unit, bl9_unit, sp5_unit, sp6_unit, sp7_unit, sp9_unit, wl5_unit, wl6_unit, wl7_unit, wl9_unit, ld8_unit, ld9_unit, ld11_unit, dld_unit, pp_unit, cups50_unit, cups60_unit, cups80_unit, cups100_unit, cups150_unit, cups210_unit, cups250_unit, bd5_unit, bd6_unit, bd7_unit, cp5_unit, cp6_unit, cp7_unit, cp9_unit)
+    $stmt_units = $conn->prepare("INSERT INTO inventory_unit (item_id, bl5_unit, bl6_unit, bl7_unit, bl9_unit, sp5_unit, sp6_unit, sp7_unit, sp9_unit, wl5_unit, wl6_unit, wl7_unit, wl9_unit, ld8_unit, ld9_unit, ld11_unit, dld_unit, pp_unit, cups50_unit, cups60_unit, cups80_unit, cups100_unit, cups150_unit, cups210_unit, cups250_unit, bd5_unit, bd6_unit, bd7_unit, cp5_unit, cp6_unit, cp7_unit, cp9_unit)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt_units->bind_param("isssssssssssssssssssssssssssssss", $item_id, $bl5_unit, $bl6_unit, $bl7_unit, $bl9_unit, $sp5_unit, $sp6_unit, $sp7_unit, $sp9_unit, $wl5_unit, $wl6_unit, $wl7_unit, $wl9_unit, $ld8_unit, $ld9_unit, $ld11_unit, $dld_unit, $pp_unit, $cups50_unit, $cups60_unit, $cups80_unit, $cups100_unit, $cups150_unit, $cups210_unit, $cups250_unit, $bd5_unit, $bd6_unit, $bd7_unit, $cp5_unit, $cp6_unit, $cp7_unit, $cp9_unit);
 
