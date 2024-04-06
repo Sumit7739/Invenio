@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggleable Container</title>
+    <style>
+        .container {
+            margin-top: 20px;
+            padding: 5px 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        .container a {
+            text-decoration: none;
+            color: #ff0000;
+            font-weight: 600;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .content-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .content-row a {
+            margin-right: 10px;
+        }
+
+        #date {
+            cursor: pointer;
+        }
+
+
+        .toggle-btn {
+            width: 80%;
+            position: relative;
+            margin-left: 50px;
+            padding: 12px 16px;
+            background-color: #007bff;
+            border: none;
+            cursor: pointer;
+            border-radius: 20px;
+            margin-top: 50px;
+            margin-bottom: 40px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        .toggle-btn a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .toggle-btn:hover {
+            background-color: #0056b3;
+        }
+
+        #calendar {
+            width: 150px;
+            height: 30px;
+            padding: 3px 6px;
+            border-radius: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        #search-btn {
+            padding: 8px 16px;
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            border-radius: 16px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        #search-btn:hover {
+            background-color: #e2e2e2cb;
+        }
+    </style>
+</head>
+
+<body>
+    <button type="button" class="toggle-btn"><a href="invent.html">CREATE NEW</a></button>
+
+    <input type="date" id="calendar">
+    <button id="search-btn">Search</button>
+    <hr>
+
+    <section>
+        <div class="container">
+            <div class="content-row">
+                <h3 id="date" onclick="toggleContainer()">Date - 12 - 04 - 2024</h3>
+                <a href="#">View</a>
+            </div>
+            <h3 class="hidden">Name - Test Name</h3>
+            <h3 class="hidden">Items - 19</h3>
+        </div>
+    </section>
+
+    <script>
+        function toggleContainer() {
+            const nameSection = document.querySelector('.container h3:nth-child(2)');
+            const itemsSection = document.querySelector('.container h3:nth-child(3)');
+
+            nameSection.classList.toggle('hidden');
+            itemsSection.classList.toggle('hidden');
+        }
+    </script>
+
+</body>
+
+</html>

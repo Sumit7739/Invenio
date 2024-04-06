@@ -14,6 +14,20 @@ function toggleMode() {
   container.classList.toggle("dark-mode");
 }
 
+function toggleAllSections() {
+  const toggleFunctions = [
+    toggleBlackLoose,
+    toggleStarPacket,
+    toggleWhiteLoose,
+    toggleLDSoma,
+    toggleCups,
+    toggleBlackDelhi,
+    toggleCover,
+  ];
+
+  toggleFunctions.forEach((func) => func());
+}
+
 // Function to toggle visibility of the Black Loose section
 function toggleBlackLoose() {
   const blackLooseSection = document.getElementById("blackLooseSection");
