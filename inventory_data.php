@@ -188,7 +188,7 @@
           }
 
           .toggle-btn {
-            margin-top: 20px;
+              margin-top: 20px;
               width: 10%;
               padding: 10px 20px;
               border: none;
@@ -209,7 +209,7 @@
   </head>
 
   <body>
-      <a href="index.html" class="toggle-buttons">
+      <a href="manage_system.html" class="toggle-buttons">
           <i id="homeIcon" class="fas fa-home home-icon"></i>
       </a>
       <a href="view_inventory.php" class="toggle-button"><i class="fas fa-arrow-left back-icon"></i></a>
@@ -252,7 +252,7 @@
               <span class="unit"><?php echo $bl9_unit; ?></span>
           </div>
       </div>
-<hr>
+      <hr>
       <label for="starPacketToggle" onclick="toggleStarPacket()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">Star Packet <span id="toggleIcon">▼</span></label><br>
       <div id="starPacketSection" class="container">
           <h3>Star Packet</h3>
@@ -401,7 +401,7 @@
               <span class="unit"><?php echo $bd7_unit; ?></span>
           </div>
       </div>
-<hr>
+      <hr>
 
       <label for="coverToggle" class="toggle-label" onclick="toggleCover()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">COVER <span id="coverToggleIcon">▼</span></label><br>
       <div id="coverSection" class="container">

@@ -44,7 +44,7 @@ if (!isset($_GET['selectedDate'])) {
         <h1>Select Date to View Inventory Data</h1>
         <form action="inventory_table.php" method="GET">
             <label for="selectedDate">Select Date:</label>
-            <input type="date" id="selectedDate" name="selectedDate">
+            <input type="date" id="selectedDate" name="selectedDate" required>
             <button id="search-btn" type="submit">Submit</button>
         </form>
     </body>
@@ -151,14 +151,14 @@ if (!isset($_GET['selectedDate'])) {
         </head>
 
         <body>
-            <a href="index.html" class="toggle-button"><i class="fas fa-arrow-left back-icon"></i></a>
+            <a href="manage_system.html" class="toggle-button"><i class="fas fa-arrow-left back-icon"></i></a>
             <br>
             <br>
             <hr>
             <h1>Select Date to View Inventory Data</h1>
             <form action="inventory_table.php" method="GET">
                 <label for="selectedDate">Select Date:</label>
-                <input type="date" id="selectedDate" name="selectedDate">
+                <input type="date" id="selectedDate" name="selectedDate" required>
                 <button id="search-btn" type="submit">Submit</button>
             </form>
             <h2>Sales Data</h2>

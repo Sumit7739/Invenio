@@ -189,7 +189,7 @@
   </head>
 
   <body>
-      <a href="index.html" class="toggle-buttons">
+      <a href="manage_system.html" class="toggle-buttons">
           <i id="homeIcon" class="fas fa-home home-icon"></i>
       </a>
       <a href="view_sales.php" class="toggle-button"><i class="fas fa-arrow-left back-icon"></i></a>

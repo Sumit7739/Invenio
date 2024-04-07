@@ -13,7 +13,7 @@
 <body>
     <div class="content-row">
         <button type="button" class="toggle-btn"><a href="add_inventory.html">CREATE NEW</a></button>
-        <a href="index.html" class="toggle-buttons">
+        <a href="manage_system.html" class="toggle-buttons">
             <i id="homeIcon" class="fas fa-home"></i>
         </a>
         <br>
@@ -28,7 +28,7 @@
         <?php
 
         include 'db_connection.php';
-      
+
 
         // SQL query to fetch data in descending order based on the date
         $sql = "SELECT id, date, name, bl5, bl6, bl7, bl9, sp5, sp6, sp7, sp9, wl5, wl6, wl7, wl9, ld8, ld9, ld11, dld, pp, cups50, cups60, cups80, cups100, cups150, cups210, cups250, bd5, bd6, bd7, cp5, cp6, cp7, cp9 

@@ -118,7 +118,7 @@
 </head>
 
 <body>
-    <a href="index.html" class="toggle-button"><i class="fas fa-arrow-left back-icon"></i></a>
+    <a href="manage_system.html" class="toggle-button"><i class="fas fa-arrow-left back-icon"></i></a>
     <br>
     <br>
     <hr>

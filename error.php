@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,8 +36,8 @@
         a:hover {
             text-decoration: underline;
         }
-        
-        h3{
+
+        h3 {
             color: #ff6347;
         }
 
@@ -67,7 +65,7 @@
             echo "<p>An unknown error occurred.</p>";
         }
         ?>
-        <p><a href="index.html">Go back to the homepage</a></p>
+        <p><a href="manage_system.html">Go back to the homepage</a></p>
         <div class="countdown" id="countdown">Redirecting in 3 seconds...</div>
     </div>
 
@@ -81,7 +79,7 @@
             countdownElement.textContent = 'Redirecting in ' + countdown + ' seconds...';
             if (countdown <= 0) {
                 clearInterval(timer);
-                window.location.href = 'index.html';
+                window.location.href = 'manage_system.html';
             }
         }, 1000);
     </script>

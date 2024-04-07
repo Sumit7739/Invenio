@@ -119,7 +119,7 @@ if (isset($_GET['id'])) {
         <button class="toggle-button" onclick="toggleMode()">
             <i id="darkModeIcon" class="fas fa-moon"></i>
         </button>
-        <a href="index.html" class="toggle-buttons">
+        <a href="manage_system.html" class="toggle-buttons">
             <i id="homeIcon" class="fas fa-home"></i>
         </a>
 
