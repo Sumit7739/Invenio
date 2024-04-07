@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Hash the password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    include 'db_connection.php';
+    include('config.php');
 
 
     // Prepare and execute SQL query to insert data into the database

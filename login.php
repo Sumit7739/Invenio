@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $enteredPassword = $_POST['password']; // Changed variable name to avoid confusion
 
-    include 'db_connection.php';
+    include('config.php');
 
     // Prepare and execute a SQL query to retrieve user data
     $sql = "SELECT * FROM users WHERE email = ?";
@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['id'] = $row['id'];
             $stmt->close();
             $conn->close();
-            header("Location: manage_system.html"); // Redirect to the success page
+            header("Location: manage_system.php"); // Redirect to the success page
             exit();
         } else {
             // Invalid password

@@ -1,6 +1,6 @@
   <?php
 
-    include 'db_connection.php';
+    include('config.php');
 
     // Check if the 'id' parameter exists in the URL
     if (isset($_GET['id']) && is_numeric($_GET['id'])) {
@@ -189,7 +189,7 @@
   </head>
 
   <body>
-      <a href="manage_system.html" class="toggle-buttons">
+      <a href="manage_system.php" class="toggle-buttons">
           <i id="homeIcon" class="fas fa-home home-icon"></i>
       </a>
       <a href="view_sales.php" class="toggle-button"><i class="fas fa-arrow-left back-icon"></i></a>

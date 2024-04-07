@@ -12,8 +12,8 @@
 
 <body>
     <div class="content-row">
-        <button type="button" class="toggle-btn"><a href="add_inventory.html">CREATE NEW</a></button>
-        <a href="manage_system.html" class="toggle-buttons">
+        <button type="button" class="toggle-btn"><a href="add_inventory.php">CREATE NEW</a></button>
+        <a href="manage_system.php" class="toggle-buttons">
             <i id="homeIcon" class="fas fa-home"></i>
         </a>
         <br>
@@ -27,7 +27,7 @@
     <section id="dataSection">
         <?php
 
-        include 'db_connection.php';
+        include('config.php');
 
 
         // SQL query to fetch data in descending order based on the date

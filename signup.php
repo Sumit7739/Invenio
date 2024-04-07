@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    include 'db_connection.php';
+    include('config.php');
 
     $token = bin2hex(random_bytes(16));
     // Check if the user already exists

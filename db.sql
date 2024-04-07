@@ -154,3 +154,14 @@ CREATE TABLE sales_unit(
     cp9_unit VARCHAR(10),
     FOREIGN KEY (item_id) REFERENCES sales_item(id)
 );
+
+
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    otp VARCHAR(6),
+    verification_status INT DEFAULT 0,
+    token VARCHAR(255)
+);

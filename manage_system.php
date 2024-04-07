@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Check if the user is not logged in
+if (!isset($_SESSION['id'])) {
+    // Redirect to the login page or any other appropriate page
+    header('Location: login.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,149 +18,7 @@
     <title>Inventory Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 90%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            background-color: #216dbe;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-            border-radius: 10px;
-            position: relative;
-        }
-
-        header h1 {
-            font-size: 30px;
-            margin: 0;
-        }
-
-        .content {
-            position: relative;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-
-        footer {
-            bottom: 0;
-            font-size: 12px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            width: 100%;
-        }
-
-        .footer-text {
-            margin: 0;
-        }
-
-        .login-link {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .login-link:hover {
-            text-decoration: underline;
-        }
-
-        .features {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
-
-        .feature-box {
-            flex-basis: 20%;
-            text-align: center;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-box i {
-            font-size: 40px;
-            color: #007bff;
-            margin-bottom: 10px;
-        }
-
-        .feature-box h3 {
-            margin-bottom: 10px;
-        }
-
-        .small-box {
-            flex-basis: 45%;
-            margin-bottom: 20px;
-            padding: 10px;
-            margin-right: 10px;
-            background-color: #f7f7f7;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .small-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .small-box a {
-            display: block;
-            color: #ff7300;
-            text-decoration: none;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .small-box p {
-            margin: 0;
-            color: #666;
-            font-size: 14px;
-        }
-
-        .logout-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #141414;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .logout-btn:hover {
-            background-color: #141414d7;
-        }
-
-        /* Responsive Styles */
-        @media only screen and (max-width: 768px) {
-            .features {
-                flex-wrap: wrap;
-            }
-
-            .feature-box {
-                flex-basis: 100%;
-                margin-bottom: 20px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style_main.css">
 </head>
 
 <body>
@@ -167,7 +36,7 @@
                     <p>Easily add, update, and track your inventory items.</p>
                     <div class="feature-row">
                         <div class="small-box">
-                            <a href="add_inventory.html">Add Inventory</a>
+                            <a href="add_inventory.php">Add Inventory</a>
                             <p>Quickly enter new inventory items.</p>
                         </div>
                         <div class="small-box">
@@ -182,7 +51,7 @@
                     <p>Easily add, update, and track your sales records.</p>
                     <div class="feature-row">
                         <div class="small-box">
-                            <a href="sales.html">Add Sales</a>
+                            <a href="sales.php">Add Sales</a>
                             <p>Quickly enter new sales records.</p>
                         </div>
                         <div class="small-box">

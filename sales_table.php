@@ -54,7 +54,7 @@ if (!isset($_GET['selectedDate'])) {
     <?php
     // if (isset($_GET['selectedDate'])) {
 } else {    // Include your database connection file
-    include 'db_connection.php';
+    include('config.php');
 
     // Get the selected date from the form
     $selectedDate = $_GET['selectedDate'];
@@ -151,7 +151,7 @@ if (!isset($_GET['selectedDate'])) {
         </head>
 
         <body>
-            <a href="manage_system.html" class="toggle-button"><i class="fas fa-arrow-left back-icon"></i></a>
+            <a href="manage_system.php" class="toggle-button"><i class="fas fa-arrow-left back-icon"></i></a>
             <br>
             <br>
             <hr>

@@ -2,7 +2,7 @@
 // Check if ID is passed in the URL
 if (isset($_GET['id'])) {
 
-    include 'db_connection.php';
+    include('config.php');
 
 
     // Check if the connection was successful
@@ -119,7 +119,7 @@ if (isset($_GET['id'])) {
         <button class="toggle-button" onclick="toggleMode()">
             <i id="darkModeIcon" class="fas fa-moon"></i>
         </button>
-        <a href="manage_system.html" class="toggle-buttons">
+        <a href="manage_system.php" class="toggle-buttons">
             <i id="homeIcon" class="fas fa-home"></i>
         </a>
 
@@ -466,7 +466,7 @@ if (isset($_GET['id'])) {
 
             <input type="submit" value="Submit">
         </form>
-        <a href="sales.html">Go To Sales</a>
+        <a href="sales.php">Go To Sales</a>
     </div>
     <script src="script.js"></script>
 </body>

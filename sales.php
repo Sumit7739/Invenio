@@ -1,10 +1,21 @@
+<?php
+session_start();
+
+// Check if the user is not logged in
+if (!isset($_SESSION['id'])) {
+    // Redirect to the login page or any other appropriate page
+    header('Location: login.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Inventory</title>
+    <title>Sales</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -14,24 +25,21 @@
         <button class="toggle-button" onclick="toggleMode()">
             <i id="darkModeIcon" class="fas fa-moon"></i>
         </button>
-        <a href="manage_system.html" class="toggle-buttons">
+        <a href="manage_system.php" class="toggle-buttons">
             <i id="homeIcon" class="fas fa-home"></i>
         </a>
 
-
-        <h1>Inventory</h1>
+        <h1>Sales</h1>
         <h2>Enter Items</h2>
-        <form action="insert_inventory.php" method="POST">
+        <form action="insert_sales.php" method="POST">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name"><br><br>
 
             <label for="date">Date:</label>
             <input type="date" id="date" name="date" required><br><br>
 
-            <button type="button" class="toggle-btn primary-btn" onclick="toggleAllSections()"><i
-                    class="fas fa-toggle-on"></i></button>
-            <label for="blackLooseToggle" onclick="toggleBlackLoose()"
-                style="color:#ff7300; font-weight: bold; font-size: 20px; cursor: pointer;">Black
+            <button type="button" class="toggle-btn primary-btn" onclick="toggleAllSections()"><i class="fas fa-toggle-on"></i></button>
+            <label for="blackLooseToggle" onclick="toggleBlackLoose()" style="color:#ff7300; font-weight: bold; font-size: 20px; cursor: pointer;">Black
                 Loose <span id="toggleIcon">▼</span></label><br>
             <div id="blackLooseSection" class="container">
 
@@ -75,9 +83,7 @@
             </div>
             <hr>
 
-            <label for="starPacketToggle" onclick="toggleStarPacket()"
-                style=" font-weight: bold; font-size: 20px; cursor: pointer;">Star Packet <span
-                    id="toggleIcon">▼</span></label><br>
+            <label for="starPacketToggle" onclick="toggleStarPacket()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">Star Packet <span id="toggleIcon">▼</span></label><br>
             <div id="starPacketSection" class="container">
 
                 <label for="sp5">5-inch SP:</label>
@@ -119,9 +125,7 @@
             </div>
             <hr>
 
-            <label for="wlToggle" class="toggle-label" onclick="toggleWhiteLoose()"
-                style=" font-weight: bold; font-size: 20px; cursor: pointer;">White Loose <span
-                    id="wlToggleIcon">▼</span></label><br>
+            <label for="wlToggle" class="toggle-label" onclick="toggleWhiteLoose()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">White Loose <span id="wlToggleIcon">▼</span></label><br>
             <div id="whiteLooseSection" class="container">
 
                 <label for="wl5">5-inch WL:</label>
@@ -163,9 +167,7 @@
             </div>
             <hr>
 
-            <label for="ldSomaToggle" class="toggle-label" onclick="toggleLDSoma()"
-                style=" font-weight: bold; font-size: 20px; cursor: pointer;">L/D SOMA <span
-                    id="ldSomaToggleIcon">▼</span></label><br>
+            <label for="ldSomaToggle" class="toggle-label" onclick="toggleLDSoma()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">L/D SOMA <span id="ldSomaToggleIcon">▼</span></label><br>
             <div id="ldSomaSection" class="container">
 
                 <label for="ld8">8-inch :- </label>
@@ -216,9 +218,7 @@
             </div>
             <hr>
 
-            <label for="cupsToggle" class="toggle-label" onclick="toggleCups()"
-                style=" font-weight: bold; font-size: 20px; cursor: pointer;">CUPS <span
-                    id="cupsToggleIcon">▼</span></label><br>
+            <label for="cupsToggle" class="toggle-label" onclick="toggleCups()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">CUPS <span id="cupsToggleIcon">▼</span></label><br>
             <div id="cupsSection" class="container">
 
                 <label for="cups50">50 ml :-</label>
@@ -287,9 +287,7 @@
             </div>
             <hr>
 
-            <label for="blackDelhiToggle" class="toggle-label" onclick="toggleBlackDelhi()"
-                style=" font-weight: bold; font-size: 20px; cursor: pointer;">Black Delhi <span
-                    id="blackDelhiToggleIcon">▼</span></label><br>
+            <label for="blackDelhiToggle" class="toggle-label" onclick="toggleBlackDelhi()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">Black Delhi <span id="blackDelhiToggleIcon">▼</span></label><br>
             <div id="blackDelhiSection" class="container">
 
                 <label for="bd5">5-inch BD :</label>
@@ -322,9 +320,7 @@
             </div>
             <hr>
 
-            <label for="coverToggle" class="toggle-label" onclick="toggleCover()"
-                style=" font-weight: bold; font-size: 20px; cursor: pointer;">COVER <span
-                    id="coverToggleIcon">▼</span></label><br>
+            <label for="coverToggle" class="toggle-label" onclick="toggleCover()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">COVER <span id="coverToggleIcon">▼</span></label><br>
             <div id="coverSection" class="container">
 
                 <label for="cp5">5-inch:</label>
@@ -368,7 +364,7 @@
 
             <input type="submit" value="Submit">
         </form>
-        <a href="sales.html">Go To Sales</a>
+        <a href="invent.html">Go To Inventory</a>
     </div>
     <script src="script.js"></script>
 </body>

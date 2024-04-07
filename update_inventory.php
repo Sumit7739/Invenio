@@ -2,7 +2,7 @@
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Include your database connection file
-    include 'db_connection.php';
+    include('config.php');
     // var_dump($_POST);
     // Check if all required fields are filled
     if (!empty($_POST['id']) && !empty($_POST['name']) && !empty($_POST['date'])) {
@@ -220,8 +220,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Redirect to another page
                 header("Location: success.html");
                 exit(); // Make sure to call exit after the header to prevent further execution
-            }
-             else {
+            } else {
                 echo "Error updating records: " . $stmt->error;
             }
             $stmt->close();

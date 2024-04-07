@@ -118,7 +118,7 @@
 </head>
 
 <body>
-    <a href="manage_system.html" class="toggle-button"><i class="fas fa-arrow-left back-icon"></i></a>
+    <a href="manage_system.php" class="toggle-button"><i class="fas fa-arrow-left back-icon"></i></a>
     <br>
     <br>
     <hr>
@@ -126,7 +126,7 @@
 
     <?php
     // Include database connection file
-    include 'db_connection.php';
+    include('config.php');
 
     // Initialize arrays to store data
     $items = []; // Store decimal numbers

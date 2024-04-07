@@ -65,7 +65,7 @@
             echo "<p>An unknown error occurred.</p>";
         }
         ?>
-        <p><a href="manage_system.html">Go back to the homepage</a></p>
+        <p><a href="manage_system.php">Go back to the homepage</a></p>
         <div class="countdown" id="countdown">Redirecting in 3 seconds...</div>
     </div>
 
@@ -79,7 +79,7 @@
             countdownElement.textContent = 'Redirecting in ' + countdown + ' seconds...';
             if (countdown <= 0) {
                 clearInterval(timer);
-                window.location.href = 'manage_system.html';
+                window.location.href = 'manage_system.php';
             }
         }, 1000);
     </script>

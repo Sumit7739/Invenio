@@ -7,8 +7,8 @@ error_reporting(E_ALL);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Define database connection credentials
-    include 'db_connection.php';
-    
+    include('config.php');
+
 
     // Prepare and bind SQL statement for inventory_items table
     $stmt_items = $conn->prepare("INSERT INTO inventory_item (name, date, bl5, bl6, bl7, bl9, sp5, sp6, sp7, sp9, wl5, wl6, wl7, wl9, ld8, ld9, ld11, dld, pp, cups50, cups60, cups80, cups100, cups150, cups210, cups250, bd5, bd6, bd7, cp5, cp6, cp7, cp9)
