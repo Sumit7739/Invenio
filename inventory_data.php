@@ -123,6 +123,7 @@
           .container {
               height: auto;
               margin-top: 20px;
+              margin-bottom: 20px;
               padding: 5px 25px 25px;
               border: 1px solid #ccc;
               border-radius: 10px;
@@ -185,6 +186,25 @@
               font-size: 18px;
               cursor: pointer;
           }
+
+          .toggle-btn {
+            margin-top: 20px;
+              width: 10%;
+              padding: 10px 20px;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+          }
+
+          .primary-btn {
+              background-color: #007bff;
+              color: #fff;
+          }
+
+          .primary-btn:hover {
+              background-color: #0056b3;
+          }
       </style>
   </head>
 
@@ -201,13 +221,16 @@
           <br>
           <label for="name">Name :</label>
           <span id="name"><?php echo $name; ?></span>
-         <a href='edit_inventory.php?id=<?php echo $_GET['id']; ?>'><i class="fas fa-edit edit-icon"></i></a>
+          <a href='edit_inventory.php?id=<?php echo $_GET['id']; ?>'><i class="fas fa-edit edit-icon"></i></a>
 
       </div>
-
-      <div class="container">
+      <button type="button" class="toggle-btn primary-btn" onclick="toggleAllSections()"><i class="fas fa-toggle-on"></i></button>
+      <br>
+      <br>
+      <label for="blackLooseToggle" onclick="toggleBlackLoose()" style="color:#ff7300; font-weight: bold; font-size: 20px; cursor: pointer;">Black
+          Loose <span id="toggleIcon">▼</span></label><br>
+      <div id="blackLooseSection" class="container">
           <h3>Black Loose</h3>
-          <!-- Items for Black Loose -->
           <div class="item">
               <label for="bl5">5-inch BL:</label>
               <span class="data"><?php echo $bl5; ?></span>
@@ -229,10 +252,9 @@
               <span class="unit"><?php echo $bl9_unit; ?></span>
           </div>
       </div>
-
-      <!-- Repeat similar structure for other containers -->
-      <!-- Container for Star Packet -->
-      <div class="container">
+<hr>
+      <label for="starPacketToggle" onclick="toggleStarPacket()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">Star Packet <span id="toggleIcon">▼</span></label><br>
+      <div id="starPacketSection" class="container">
           <h3>Star Packet</h3>
           <!-- Items for Star Packet -->
           <div class="item">
@@ -256,9 +278,9 @@
               <span class="unit"><?php echo $sp9_unit; ?></span>
           </div>
       </div>
-
-      <!-- Container for White Loose -->
-      <div class="container">
+      <hr>
+      <label for="wlToggle" class="toggle-label" onclick="toggleWhiteLoose()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">White Loose <span id="wlToggleIcon">▼</span></label><br>
+      <div id="whiteLooseSection" class="container">
           <h3>White Loose</h3>
           <!-- Items for White Loose -->
           <div class="item">
@@ -282,10 +304,14 @@
               <span class="unit"><?php echo $wl9_unit; ?></span>
           </div>
       </div>
-      <div class="container">
-          <h3>L/D SOMA</h3>
-          <!-- Items for L/D SOMA -->
-          <div class="item">
+      <hr>
+      <label for="ldSomaToggle" class="toggle-label" onclick="toggleLDSoma()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">L/D SOMA <span id="ldSomaToggleIcon">▼</span></label><br>
+      <div id="ldSomaSection" class="container">
+
+          <div class="contain
+              <h3>L/D SOMA</h3>
+              <!-- Items for L/D SOMA -->
+              <div class=" item">
               <label for="ld8">8-inch L/D:</label>
               <span class="data"><?php echo $ld8; ?></span>
               <span class="unit"><?php echo $ld8_unit; ?></span>
@@ -311,9 +337,10 @@
               <span class="unit"><?php echo $pp_unit; ?></span>
           </div>
       </div>
-
-      <!-- Container for Cups -->
-      <div class="container">
+      <hr>
+      <label for="cupsToggle" class="toggle-label" onclick="toggleCups()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">CUPS <span id="cupsToggleIcon">▼</span></label><br>
+      <div id="cupsSection" class="container">
+          <!-- Container for Cups -->
           <h3>CUPS</h3>
           <!-- Items for Cups -->
           <div class="item">
@@ -352,9 +379,10 @@
               <span class="unit"><?php echo $cups250_unit; ?></span>
           </div>
       </div>
-
-      <!-- Container for Black Delhi -->
-      <div class="container">
+      <hr>
+      <label for="blackDelhiToggle" class="toggle-label" onclick="toggleBlackDelhi()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">Black Delhi <span id="blackDelhiToggleIcon">▼</span></label><br>
+      <div id="blackDelhiSection" class="container">
+          <!-- Container for Black Delhi -->
           <h3>Black Delhi</h3>
           <!-- Items for Black Delhi -->
           <div class="item">
@@ -373,9 +401,11 @@
               <span class="unit"><?php echo $bd7_unit; ?></span>
           </div>
       </div>
+<hr>
 
-      <!-- Container for Cover -->
-      <div class="container">
+      <label for="coverToggle" class="toggle-label" onclick="toggleCover()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">COVER <span id="coverToggleIcon">▼</span></label><br>
+      <div id="coverSection" class="container">
+          <!-- Container for Cover -->
           <h3>Cover</h3>
           <!-- Items for Cover -->
           <div class="item">
@@ -400,6 +430,7 @@
           </div>
       </div>
       <hr>
+      <script src="script.js"></script>
   </body>
 
   </html>
