@@ -1,12 +1,228 @@
 <?php
-// Check if the form is submitted
+
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Define database connection credentials
+
+    if (isset($_POST['bl5_unit'])) {
+        $bl5Unit = $_POST['bl5_unit'];
+
+        if ($bl5Unit === "NULL") {
+            $bl5Unit = $_POST['bl5_unit_default'];
+        }
+    }
+
+    if (isset($_POST['bl6_unit'])) {
+        $bl6Unit = $_POST['bl6_unit'];
+        if ($bl6Unit === "NULL") {
+            $bl6Unit = $_POST['bl6_unit_default'];
+        }
+    }
+
+    if (isset($_POST['bl7_unit'])) {
+        $bl7Unit = $_POST['bl7_unit'];
+        if ($bl7Unit === "NULL") {
+            $bl7Unit = $_POST['bl7_unit_default'];
+        }
+    }
+
+    if (isset($_POST['bl9_unit'])) {
+        $bl9Unit = $_POST['bl9_unit'];
+        if ($bl9Unit === "NULL") {
+            $bl9Unit = $_POST['bl9_unit_default'];
+        }
+    }
+    if (isset($_POST['sp5_unit'])) {
+        $sp5Unit = $_POST['sp5_unit'];
+        if ($sp5Unit === "NULL") {
+            $sp5Unit = $_POST['sp5_unit_default'];
+        }
+    }
+
+    if (isset($_POST['sp6_unit'])) {
+        $sp6Unit = $_POST['sp6_unit'];
+        if ($sp6Unit === "NULL") {
+            $sp6Unit = $_POST['sp6_unit_default'];
+        }
+    }
+
+    if (isset($_POST['sp7_unit'])) {
+        $sp7Unit = $_POST['sp7_unit'];
+        if ($sp7Unit === "NULL") {
+            $sp7Unit = $_POST['sp7_unit_default'];
+        }
+    }
+
+    if (isset($_POST['sp9_unit'])) {
+        $sp9Unit = $_POST['sp9_unit'];
+        if ($sp9Unit === "NULL") {
+            $sp9Unit = $_POST['sp9_unit_default'];
+        }
+    }
+
+    if (isset($_POST['wl5_unit'])) {
+        $wl5Unit = $_POST['wl5_unit'];
+        if ($wl5Unit === "NULL") {
+            $wl5Unit = $_POST['wl5_unit_default'];
+        }
+    }
+
+    if (isset($_POST['wl6_unit'])) {
+        $wl6Unit = $_POST['wl6_unit'];
+        if ($wl6Unit === "NULL") {
+            $wl6Unit = $_POST['wl6_unit_default'];
+        }
+    }
+
+    if (isset($_POST['wl7_unit'])) {
+        $wl7Unit = $_POST['wl7_unit'];
+        if ($wl7Unit === "NULL") {
+            $wl7Unit = $_POST['wl7_unit_default'];
+        }
+    }
+
+    if (isset($_POST['wl9_unit'])) {
+        $wl9Unit = $_POST['wl9_unit'];
+        if ($wl9Unit === "NULL") {
+            $wl9Unit = $_POST['wl9_unit_default'];
+        }
+    }
+
+    if (isset($_POST['ld8_unit'])) {
+        $ld8Unit = $_POST['ld8_unit'];
+        if ($ld8Unit === "NULL") {
+            $ld8Unit = $_POST['ld8_unit_default'];
+        }
+    }
+
+    if (isset($_POST['ld9_unit'])) {
+        $ld9Unit = $_POST['ld9_unit'];
+        if ($ld9Unit === "NULL") {
+            $ld9Unit = $_POST['ld9_unit_default'];
+        }
+    }
+
+    if (isset($_POST['ld11_unit'])) {
+        $ld11Unit = $_POST['ld11_unit'];
+        if ($ld11Unit === "NULL") {
+            $ld11Unit = $_POST['ld11_unit_default'];
+        }
+    }
+
+    if (isset($_POST['dld_unit'])) {
+        $dldUnit = $_POST['dld_unit'];
+        if ($dldUnit === "NULL") {
+            $dldUnit = $_POST['dld_unit_default'];
+        }
+    }
+    if (isset($_POST['pp_unit'])) {
+        $ppUnit = $_POST['pp_unit'];
+        if ($ppUnit === "NULL") {
+            $ppUnit = $_POST['pp_unit_default'];
+        }
+    }
+
+    if (isset($_POST['cups50_unit'])) {
+        $cups50Unit = $_POST['cups50_unit'];
+        if ($cups50Unit === "NULL") {
+            $cups50Unit = $_POST['cups50_unit_default'];
+        }
+    }
+
+    if (isset($_POST['cups60_unit'])) {
+        $cups60Unit = $_POST['cups60_unit'];
+        if ($cups60Unit === "NULL") {
+            $cups60Unit = $_POST['cups60_unit_default'];
+        }
+    }
+
+    if (isset($_POST['cups80_unit'])) {
+        $cups80Unit = $_POST['cups80_unit'];
+        if ($cups80Unit === "NULL") {
+            $cups80Unit = $_POST['cups80_unit_default'];
+        }
+    }
+
+    if (isset($_POST['cups100_unit'])) {
+        $cups100Unit = $_POST['cups100_unit'];
+        if ($cups100Unit === "NULL") {
+            $cups100Unit = $_POST['cups100_unit_default'];
+        }
+    }
+
+    if (isset($_POST['cups150_unit'])) {
+        $cups150Unit = $_POST['cups150_unit'];
+        if ($cups150Unit === "NULL") {
+            $cups150Unit = $_POST['cups150_unit_default'];
+        }
+    }
+
+    if (isset($_POST['cups210_unit'])) {
+        $cups210Unit = $_POST['cups210_unit'];
+        if ($cups210Unit === "NULL") {
+            $cups210Unit = $_POST['cups210_unit_default'];
+        }
+    }
+
+    if (isset($_POST['cups250_unit'])) {
+        $cups250Unit = $_POST['cups250_unit'];
+        if ($cups250Unit === "NULL") {
+            $cups250Unit = $_POST['cups250_unit_default'];
+        }
+    }
+
+    if (isset($_POST['bd5_unit'])) {
+        $bd5Unit = $_POST['bd5_unit'];
+        if ($bd5Unit === "NULL") {
+            $bd5Unit = $_POST['bd5_unit_default'];
+        }
+    }
+
+    if (isset($_POST['bd6_unit'])) {
+        $bd6Unit = $_POST['bd6_unit'];
+        if ($bd6Unit === "NULL") {
+            $bd6Unit = $_POST['bd6_unit_default'];
+        }
+    }
+
+    if (isset($_POST['bd7_unit'])) {
+        $bd7Unit = $_POST['bd7_unit'];
+        if ($bd7Unit === "NULL") {
+            $bd7Unit = $_POST['bd7_unit_default'];
+        }
+    }
+
+    if (isset($_POST['cp5_unit'])) {
+        $cp5Unit = $_POST['cp5_unit'];
+        if ($cp5Unit === "NULL") {
+            $cp5Unit = $_POST['cp5_unit_default'];
+        }
+    }
+
+    if (isset($_POST['cp6_unit'])) {
+        $cp6Unit = $_POST['cp6_unit'];
+        if ($cp6Unit === "NULL") {
+            $cp6Unit = $_POST['cp6_unit_default'];
+        }
+    }
+
+    if (isset($_POST['cp7_unit'])) {
+        $cp7Unit = $_POST['cp7_unit'];
+        if ($cp7Unit === "NULL") {
+            $cp7Unit = $_POST['cp7_unit_default'];
+        }
+    }
+
+    if (isset($_POST['cp9_unit'])) {
+        $cp9Unit = $_POST['cp9_unit'];
+        if ($cp9Unit === "NULL") {
+            $cp9Unit = $_POST['cp9_unit_default'];
+        }
+    }
+
     include('config.php');
 
 

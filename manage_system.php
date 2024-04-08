@@ -7,8 +7,25 @@ if (!isset($_SESSION['id'])) {
     header('Location: login.php');
     exit();
 }
-?>
 
+include('config.php');
+
+$userID = $_SESSION['id'];
+
+$sql = "SELECT name FROM users WHERE id = '$userID'";
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $name = $row['name'];
+} else {
+    $name = "User";
+}
+
+// Close the database connection
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +44,8 @@ if (!isset($_SESSION['id'])) {
             <h1>PPWALA <br>Inventory Management System</h1>
         </header>
         <div class="content">
-            <p>Welcome to our inventory management system. We help businesses organize and track their inventory
+            <h3>Welcome <?php echo $name; ?></h3>
+            <p>Welcome to your inventory management system. It help businesses organize and track their inventory
                 efficiently.</p>
             <div class="features">
                 <div class="feature-box">

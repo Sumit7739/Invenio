@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['id'] = $row['id'];
             $stmt->close();
             $conn->close();
-            header("Location: manage_system.php"); // Redirect to the success page
+            header("Location: welcome.php"); // Redirect to the success page
             exit();
         } else {
             // Invalid password
