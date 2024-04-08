@@ -152,7 +152,7 @@
           .container .item .data {
               position: absolute;
               right: 0;
-              margin-right: 100px;
+              margin-right: 145px;
               font-size: 16px;
               font-weight: 600;
               color: blue;
@@ -161,7 +161,7 @@
           .container .item .unit {
               position: absolute;
               right: 0;
-              margin-right: 75px;
+              margin-right: 35px;
               font-size: 16px;
               font-weight: 600;
               color: green;

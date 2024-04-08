@@ -260,8 +260,9 @@ if (!isset($_SESSION['id'])) {
                 <input type="number" step="0.01" id="cups50" name="cups50">
                 <select id="cups50_unit" name="cups50_unit" required class="unit">
                     <option value="NULL">Select Unit</option>
-                    <option value="kg">kg</option>
-                    <option value="g">g</option>
+                    <option value="Thousand">Thousand</option>
+                    <option value="Pieces">Pieces</option>
+                    <option value="Dozen">Dozen</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select>
                 <input type="hidden" name="cups50_unit_default" value="NULL">
@@ -271,8 +272,9 @@ if (!isset($_SESSION['id'])) {
                 <input type="number" step="0.01" id="cups60" name="cups60">
                 <select id="cups60_unit" name="cups60_unit" required class="unit">
                     <option value="NULL">Select Unit</option>
-                    <option value="kg">kg</option>
-                    <option value="g">g</option>
+                    <option value="Thousand">Thousand</option>
+                    <option value="Pieces">Pieces</option>
+                    <option value="Dozen">Dozen</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select>
                 <input type="hidden" name="cups60_unit_default" value="NULL">
@@ -282,8 +284,9 @@ if (!isset($_SESSION['id'])) {
                 <input type="number" step="0.01" id="cups80" name="cups80">
                 <select id="cups80_unit" name="cups80_unit" required class="unit">
                     <option value="NULL">Select Unit</option>
-                    <option value="kg">kg</option>
-                    <option value="g">g</option>
+                    <option value="Thousand">Thousand</option>
+                    <option value="Pieces">Pieces</option>
+                    <option value="Dozen">Dozen</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select>
                 <input type="hidden" name="cups80_unit_default" value="NULL">
@@ -293,8 +296,9 @@ if (!isset($_SESSION['id'])) {
                 <input type="number" step="0.01" id="cups100" name="cups100">
                 <select id="cups100_unit" name="cups100_unit" required class="unit">
                     <option value="NULL">Select Unit</option>
-                    <option value="kg">kg</option>
-                    <option value="g">g</option>
+                    <option value="Thousand">Thousand</option>
+                    <option value="Pieces">Pieces</option>
+                    <option value="Dozen">Dozen</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select>
                 <input type="hidden" name="cups100_unit_default" value="NULL">
@@ -304,8 +308,9 @@ if (!isset($_SESSION['id'])) {
                 <input type="number" step="0.01" id="cups150" name="cups150">
                 <select id="cups150_unit" name="cups150_unit" required class="unit">
                     <option value="NULL">Select Unit</option>
-                    <option value="kg">kg</option>
-                    <option value="g">g</option>
+                    <option value="Thousand">Thousand</option>
+                    <option value="Pieces">Pieces</option>
+                    <option value="Dozen">Dozen</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select>
                 <input type="hidden" name="cups150_unit_default" value="NULL">
@@ -315,8 +320,9 @@ if (!isset($_SESSION['id'])) {
                 <input type="number" step="0.01" id="cups210" name="cups210">
                 <select id="cups210_unit" name="cups210_unit" required class="unit">
                     <option value="NULL">Select Unit</option>
-                    <option value="kg">kg</option>
-                    <option value="g">g</option>
+                    <option value="Thousand">Thousand</option>
+                    <option value="Pieces">Pieces</option>
+                    <option value="Dozen">Dozen</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select>
                 <input type="hidden" name="cups210_unit_default" value="NULL">
@@ -326,8 +332,9 @@ if (!isset($_SESSION['id'])) {
                 <input type="number" step="0.01" id="cups250" name="cups250">
                 <select id="cups250_unit" name="cups250_unit" required class="unit">
                     <option value="NULL">Select Unit</option>
-                    <option value="kg">kg</option>
-                    <option value="g">g</option>
+                    <option value="Thousand">Thousand</option>
+                    <option value="Pieces">Pieces</option>
+                    <option value="Dozen">Dozen</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select>
                 <input type="hidden" name="cups250_unit_default" value="NULL">

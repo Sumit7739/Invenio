@@ -223,13 +223,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    include('config.php');
+    include ('config.php');
 
 
     // Prepare and bind SQL statement for inventory_items table
     $stmt_items = $conn->prepare("INSERT INTO sales_item (name, date, bl5, bl6, bl7, bl9, sp5, sp6, sp7, sp9, wl5, wl6, wl7, wl9, ld8, ld9, ld11, dld, pp, cups50, cups60, cups80, cups100, cups150, cups210, cups250, bd5, bd6, bd7, cp5, cp6, cp7, cp9)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt_items->bind_param("ssiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii", $name, $date, $bl5, $bl6, $bl7, $bl9, $sp5, $sp6, $sp7, $sp9, $wl5, $wl6, $wl7, $wl9, $ld8, $ld9, $ld11, $dld, $pp, $cups50, $cups60, $cups80, $cups100, $cups150, $cups210, $cups250, $bd5, $bd6, $bd7, $cp5, $cp6, $cp7, $cp9);
+    $stmt_items->bind_param("ssddddddddddddddddddddddddddddddd", $name, $date, $bl5, $bl6, $bl7, $bl9, $sp5, $sp6, $sp7, $sp9, $wl5, $wl6, $wl7, $wl9, $ld8, $ld9, $ld11, $dld, $pp, $cups50, $cups60, $cups80, $cups100, $cups150, $cups210, $cups250, $bd5, $bd6, $bd7, $cp5, $cp6, $cp7, $cp9);
 
     // Set parameters and execute SQL statement for inventory_items table
     $name = $_POST["name"];
@@ -309,12 +309,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cp9_unit = $_POST["cp9_unit"];
     $stmt_units->execute();
 
+    $insertedItemId = $conn->insert_id;
+    header("Location: sales_success.php?id=$insertedItemId");
+    exit;
     // Close statements and connection
-    $stmt_items->close();
-    $stmt_units->close();
-    $conn->close();
+    // $stmt_items->close();
+    // $stmt_units->close();
+    // $conn->close();
 
     // Redirect after successful insertion
-    header("Location: success.html");
-    exit;
 }

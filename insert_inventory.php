@@ -5,17 +5,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-if (!isset($_SESSION['id'])) {
-    // Redirect to the login page or any other appropriate page
-    header('Location: login.php');
-    exit();
-}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST['bl5_unit'])) {
         $bl5Unit = $_POST['bl5_unit'];
-        // Check if the selected unit is "none" and use the value from the hidden field if it is
         if ($bl5Unit === "NULL") {
             $bl5Unit = $_POST['bl5_unit_default']; // Use the value from the hidden field (NULL)
         }
@@ -229,9 +223,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-
-
-
     // Define database connection credentials
     include ('config.php');
 
@@ -239,7 +230,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Prepare and bind SQL statement for inventory_items table
         $stmt_items = $conn->prepare("INSERT INTO inventory_item (name, date, bl5, bl6, bl7, bl9, sp5, sp6, sp7, sp9, wl5, wl6, wl7, wl9, ld8, ld9, ld11, dld, pp, cups50, cups60, cups80, cups100, cups150, cups210, cups250, bd5, bd6, bd7, cp5, cp6, cp7, cp9)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt_items->bind_param("ssiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii", $name, $date, $bl5, $bl6, $bl7, $bl9, $sp5, $sp6, $sp7, $sp9, $wl5, $wl6, $wl7, $wl9, $ld8, $ld9, $ld11, $dld, $pp, $cups50, $cups60, $cups80, $cups100, $cups150, $cups210, $cups250, $bd5, $bd6, $bd7, $cp5, $cp6, $cp7, $cp9);
+        $stmt_items->bind_param("ssddddddddddddddddddddddddddddddd", $name, $date, $bl5, $bl6, $bl7, $bl9, $sp5, $sp6, $sp7, $sp9, $wl5, $wl6, $wl7, $wl9, $ld8, $ld9, $ld11, $dld, $pp, $cups50, $cups60, $cups80, $cups100, $cups150, $cups210, $cups250, $bd5, $bd6, $bd7, $cp5, $cp6, $cp7, $cp9);
 
         // Set parameters and execute SQL statement for inventory_items table
         $name = $_POST["name"];
@@ -323,13 +314,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_units->execute();
 
         // Close statements and connection
-        $stmt_items->close();
-        $stmt_units->close();
-        $conn->close();
-
+        
         // Redirect after successful insertion
-        header("Location: success.html");
-        exit;
+        // header("Location: success.html");
+        // exit;
+        // Redirect after successful insertion
+        // $insertedItemId = $conn->insert_id;
+        // header("Location: invent_success.php?id=$insertedItemId");
+        // exit;
+        
+        // $stmt_items->close();
+        // $stmt_units->close();
+        // $conn->close();
     } catch (Exception $e) {
         // Handle exceptions here, such as logging the error or displaying a message to the user
         echo "Error: " . $e->getMessage();

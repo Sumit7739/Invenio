@@ -151,7 +151,7 @@
           .container .item .data {
               position: absolute;
               right: 0;
-              margin-right: 100px;
+              margin-right: 130px;
               font-size: 16px;
               font-weight: 600;
               color: blue;
