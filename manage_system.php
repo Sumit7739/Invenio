@@ -79,6 +79,15 @@ $conn->close();
                     </div>
                 </div>
                 <div class="feature-box">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Stock Tables</h3>
+                    <p>Get detailed reports and insights into your Stocks.</p>
+                    <div class="small-box">
+                        <a href="stock.php">Stock Table</a>
+                        <p>Quickly view new Stocks reports.</p>
+                    </div>
+                </div>
+                <div class="feature-box">
                     <i class="fas fa-chart-bar"></i>
                     <h3>Generate Reports</h3>
                     <p>Get detailed reports and insights into your inventory performance.</p>
@@ -110,6 +119,10 @@ $conn->close();
             <a href="logout.php" class="logout-btn">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </a>
+            <a href="users.php" class="logout-btn">
+                <i class="fas fa-user"></i> See Users
+            </a>
+
         </div>
     </div>
     <footer>
