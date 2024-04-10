@@ -66,13 +66,13 @@
         }
         ?>
         <p><a href="manage_system.php">Go back to the homepage</a></p>
-        <div class="countdown" id="countdown">Redirecting in 3 seconds...</div>
+        <div class="countdown" id="countdown">Redirecting in 1 seconds...</div>
     </div>
 
     <script>
         // Countdown timer for redirection
         var countdownElement = document.getElementById('countdown');
-        var countdown = 3;
+        var countdown = 1;
 
         var timer = setInterval(function() {
             countdown--;

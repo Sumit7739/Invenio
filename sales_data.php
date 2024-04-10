@@ -185,6 +185,65 @@
               font-size: 18px;
               cursor: pointer;
           }
+
+          .delete-icon {
+              position: absolute;
+              margin-top: 15px;
+              right: 0;
+              margin-right: 25px;
+              color: #333;
+              font-size: 18px;
+              cursor: pointer;
+          }
+
+          .delete-icon:active {
+              color: red;
+          }
+
+          /* CSS styles for the popup */
+          .popup {
+              display: none;
+              position: fixed;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 80%;
+              padding: 30px;
+              background-color: white;
+              border: 1px solid #ccc;
+              border-radius: 10px;
+              z-index: 1000;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+              /* Optional: Adds a box shadow for better visual effect */
+          }
+
+          .popup h2 {
+              font-size: 18px;
+              margin-bottom: 30px;
+          }
+
+          .popup button {
+              width: 130px;
+              margin-right: 10px;
+              padding: 15px 10px;
+              background-color: #ff0000;
+              border-radius: 8px;
+              color: white;
+              border: none;
+              cursor: pointer;
+          }
+
+          .popup button:hover {
+              background-color: #0056b3;
+          }
+
+          .popup button:last-child {
+              background-color: #0056b3;
+          }
+
+          .popup button:last-child:hover {
+              background-color: #0057b3c3;
+          }
       </style>
   </head>
 
@@ -202,9 +261,15 @@
           <label for="name">Name :</label>
           <span id="name"><?php echo $name; ?></span>
           <a href='edit_sales.php?id=<?php echo $_GET['id']; ?>'><i class="fas fa-edit edit-icon"></i></a>
-
+          <a href="#" class="toggle-buttons">
+              <i class="fas fa-trash-alt delete-icon" id="deleteButton"></i>
+          </a>
       </div>
-
+      <div class="popup" id="popup">
+          <h2>Are you sure you want to delete this item?</h2>
+          <button onclick="confirmDelete()">Yes, delete</button>
+          <button onclick="closePopup()">Cancel</button>
+      </div>
       <div class="container">
           <h3>Black Loose</h3>
           <!-- Items for Black Loose -->
@@ -400,6 +465,43 @@
           </div>
       </div>
       <hr>
+      <script>
+          const deleteButton = document.getElementById('deleteButton');
+          const popup = document.getElementById('popup');
+
+          deleteButton.addEventListener('click', function() {
+              popup.style.display = 'block';
+          });
+
+          function confirmDelete() {
+              // Add your delete logic here
+              alert('Item deleted!');
+              closePopup();
+          }
+
+          function closePopup() {
+              popup.style.display = 'none';
+          }
+
+          function confirmDelete() {
+              // Check if the 'id' parameter exists in the URL
+              const urlParams = new URLSearchParams(window.location.search);
+              const itemId = urlParams.get('id');
+
+              if (itemId !== null && !isNaN(itemId)) {
+                  // 'itemId' is a valid numeric value
+                  // Forward to delete_item.php with the item ID in the URL
+                  window.location.href = `delete_sales.php?id=${itemId}`;
+              } else {
+                  // 'id' parameter is missing or invalid
+                  alert('Invalid item ID.');
+              }
+          }
+
+          function closePopup() {
+              document.getElementById('popup').style.display = 'none';
+          }
+      </script>
   </body>
 
   </html>

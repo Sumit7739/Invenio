@@ -91,14 +91,14 @@ $conn->close();
     <div class="container">
         <h1>Welcome <?php echo $name; ?></h1>
         <p>We are setting things up for you. Please wait a few seconds.</p>
-        <div class="countdown" id="countdown">Redirecting in 3 seconds...</div>
+        <div class="countdown" id="countdown">Redirecting in 1 seconds...</div>
         <div class="loader"></div>
     </div>
 
     <script>
         // Countdown timer for redirection
         var countdownElement = document.getElementById('countdown');
-        var countdown = 3;
+        var countdown = 1;
 
         var timer = setInterval(function() {
             countdown--;

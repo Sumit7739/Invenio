@@ -93,7 +93,7 @@ $conn->close();
                     <p>Get detailed reports and insights into your inventory performance.</p>
                     <div class="feature-row">
                         <div class="small-box">
-                            <a href="product_sales_report.php">Sales Report</a>
+                            <a href="sales_report.php">Sales Report</a>
                             <p>Quickly enter new sales records.</p>
                         </div>
                         <div class="small-box">

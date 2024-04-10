@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include('config.php');
     // var_dump($_POST);
     // Check if all required fields are filled
-    if (!empty($_POST['id']) && !empty($_POST['name']) && !empty($_POST['date'])) {
+    if (!empty($_POST['id']) && !empty($_POST['date'])) {
         // Retrieve form data
         $id = isset($_POST['id']) ? $_POST['id'] : null;
         $name = isset($_POST['name']) ? $_POST['name'] : null;

@@ -3,31 +3,31 @@
 include('config.php');
 
 // Fetch data from inventory_item table for BL, SP, and WL categories
-$sqlInventoryBL = "SELECT bl5, bl6, bl7, bl9 FROM inventory_item";
+$sqlInventoryBL = "SELECT bl5, bl6, bl7, bl9 FROM sales_item";
 $resultInventoryBL = $conn->query($sqlInventoryBL);
 $inventoryBLData = $resultInventoryBL->fetch_assoc(); // Assuming only one row in inventory table
 
-$sqlInventorySP = "SELECT sp5, sp6, sp7, sp9 FROM inventory_item";
+$sqlInventorySP = "SELECT sp5, sp6, sp7, sp9 FROM sales_item";
 $resultInventorySP = $conn->query($sqlInventorySP);
 $inventorySPData = $resultInventorySP->fetch_assoc(); // Assuming only one row in inventory table
 
-$sqlInventoryWL = "SELECT wl5, wl6, wl7, wl9 FROM inventory_item";
+$sqlInventoryWL = "SELECT wl5, wl6, wl7, wl9 FROM sales_item";
 $resultInventoryWL = $conn->query($sqlInventoryWL);
 $inventoryWLData = $resultInventoryWL->fetch_assoc(); // Assuming only one row in inventory table
 
-$sqlInventoryLD = "SELECT ld8, ld9, ld11, dld, pp FROM inventory_item";
+$sqlInventoryLD = "SELECT ld8, ld9, ld11, dld, pp FROM sales_item";
 $resultInventoryLD = $conn->query($sqlInventoryLD);
 $inventoryLDData = $resultInventoryLD->fetch_assoc(); // Assuming only one row in inventory table
 
-$sqlInventoryCups = "SELECT cups50, cups60, cups80, cups100, cups150, cups210, cups250 FROM inventory_item";
+$sqlInventoryCups = "SELECT cups50, cups60, cups80, cups100, cups150, cups210, cups250 FROM sales_item";
 $resultInventoryCups = $conn->query($sqlInventoryCups);
 $inventoryCupsData = $resultInventoryCups->fetch_assoc(); // Assuming only one row in inventory table
 
-$sqlInventoryBD = "SELECT bd5, bd6, bd7 FROM inventory_item";
+$sqlInventoryBD = "SELECT bd5, bd6, bd7 FROM sales_item";
 $resultInventoryBD = $conn->query($sqlInventoryBD);
 $inventoryBDData = $resultInventoryBD->fetch_assoc(); // Assuming only one row in inventory table
 
-$sqlInventoryCP = "SELECT cp5, cp6, cp7, cp9 FROM inventory_item";
+$sqlInventoryCP = "SELECT cp5, cp6, cp7, cp9 FROM sales_item";
 $resultInventoryCP = $conn->query($sqlInventoryCP);
 $inventoryCPData = $resultInventoryCP->fetch_assoc(); // Assuming only one row in inventory table
 
@@ -38,7 +38,7 @@ $inventoryCPData = $resultInventoryCP->fetch_assoc(); // Assuming only one row i
 
 <head>
     <meta charset="UTF-8">
-    <title>Inventory Report</title>
+    <title>Sales Report</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Include Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -128,7 +128,7 @@ $inventoryCPData = $resultInventoryCP->fetch_assoc(); // Assuming only one row i
 <body>
     <a href="manage_system.php" class="toggle-button"><i class="fas fa-arrow-left back-icon"></i></a>
     <div class="container">
-        <h1 style="text-align: center;">Inventory Report</h1>
+        <h1 style="text-align: center;">Sales Report</h1>
 
         <div class="chart-container">
             <h2 class="chart-title">BL Items Distribution</h2>
