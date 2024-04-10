@@ -27,14 +27,18 @@ if (isset($_POST['submit'])) {
             exit();
         }
 
-        // Debugging output
-        // echo "Stored Hashed Password: " . $storedHashedPassword . "<br>";
-        // echo "Entered Password: " . $enteredPassword . "<br>";
-
         // Verify the entered password against the stored hashed password
         if (password_verify($enteredPassword, $storedHashedPassword)) {
             // Password is correct, login successful
             $_SESSION['id'] = $row['id'];
+
+            // Check if "Remember Me" is checked
+            if (isset($_POST['remember_me']) && $_POST['remember_me'] == 'on') {
+                $cookie_data = $email . ':' . $storedHashedPassword; // You can modify this data format as needed
+                $cookie_expire = time() + (30 * 24 * 3600); // 30 days in seconds
+                setcookie('remember_me_cookie', $cookie_data, $cookie_expire, '/');
+            }
+
             $stmt->close();
             $conn->close();
             header("Location: welcome.php"); // Redirect to the success page
@@ -57,7 +61,6 @@ if (isset($_POST['submit'])) {
     $conn->close(); // Close the database connection
 }
 ?>
-
 
 
 
@@ -259,18 +262,16 @@ if (isset($_POST['submit'])) {
                     </p>
                 <?php endif; ?>
                 <div class="input-box">
-                    <input type="email" id="email" name="email" required>
-                    <label for="email">Enter Your Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter Email" required>
                 </div>
                 <div class="input-box">
-                    <input type="password" id="password" name="password" required maxlength="8">
-                    <label for="password">Enter Your Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter Password" required maxlength="8">
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox"> Remember Me.
+                    <input type="checkbox" name="remember_me"> Remember Me.
                 </div>
                 <div class="forpass">
-                    <a href="#">Forgot password?</a>
+                    <a href="send_otp.php">Forgot password?</a>
                 </div>
                 <button type="submit" name="submit">Login</button>
                 <div class="log">

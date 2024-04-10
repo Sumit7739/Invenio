@@ -49,6 +49,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Access</th>
         </tr>
         <?php
         // Database connection parameters
