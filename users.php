@@ -4,53 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>User Data</title>
     <style>
+        /* Import Google Material Design styles */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+        /* Set global font family */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        /* Custom styles for Material Design */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
         .back-icon {
             position: absolute;
             right: 0;
-            margin-right: 20px;
-            margin-top: 10px;
+            margin-right: 40px;
+            margin-top: 20px;
             color: #333;
             font-size: 30px;
             cursor: pointer;
         }
 
-        table {
-            padding: 20px;
-            width: 98%;
-            border-collapse: collapse;
-            margin-top: 20px;
+        .user-card {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
         }
 
-        th,
-        td {
-            padding: 10px;
-            border: 1px solid #ddd;
+        .user-info {
+            margin-bottom: 10px;
         }
 
-        th {
-            background-color: #f2f2f2;
+        .user-info h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
         }
 
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
+        .user-info p {
+            margin: 0;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .back-icon {
+                font-size: 34px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <a href="manage_system.php" class="toggle-button"><i class="fas fa-arrow-left back-icon"></i></a>
-    <h1>User Data</h1>
-    <h2>Logged In Users</h2>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Access</th>
-        </tr>
+    <a href="manage_system.php" class="toggle-button"><i class="material-icons back-icon">arrow_back</i></a>
+    <div class="container">
+        <h1>User Data</h1>
+        <h2>Logged In Users</h2>
         <?php
         // Database connection parameters
         include('config.php');
@@ -70,18 +96,20 @@
         if ($result->num_rows > 0) {
             // Output data of each row
             while ($row = $result->fetch_assoc()) {
-                echo "<tr>
-                        <td>" . $row["id"] . "</td>
-                        <td>" . $row["name"] . "</td>
-                        <td>" . $row["email"] . "</td>
-                      </tr>";
+                echo '<div class="user-card">';
+                echo '<div class="user-info">';
+                echo '<h3>ID: ' . $row["id"] . '</h3>';
+                echo '<p>Name: ' . $row["name"] . '</p>';
+                echo '<p>Email: ' . $row["email"] . '</p>';
+                echo '</div>';
+                echo '</div>';
             }
         } else {
-            echo "<tr><td colspan='4'>No data found</td></tr>";
+            echo "<p>No data found</p>";
         }
         $conn->close();
         ?>
-    </table>
+    </div>
 </body>
 
 </html>

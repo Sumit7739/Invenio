@@ -3,9 +3,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 
 session_start();
-require 'C:\xampp\htdocs\ppwala\PHPMailer-master\src\PHPMailer.php';
-require 'C:\xampp\htdocs\ppwala\PHPMailer-master\src\SMTP.php';
-require 'C:\xampp\htdocs\ppwala\PHPMailer-master\src\Exception.php';
+require 'PHPMailer-master/src/PHPMailer.php';
+require 'PHPMailer-master/src/SMTP.php';
+require 'PHPMailer-master/src/Exception.php';
 
 
 

@@ -34,27 +34,92 @@ if (isset($_GET['tokenn'])) {
             $updateStmt->bind_param("ss", $hashedPassword, $userEmail);
 
             if ($updateStmt->execute()) {
-                // Password updated successfully
-                echo '<h1>Password Changed successfully! You Can Login Now</h1>';
-                // echo '<h2'
-                echo '<script>setTimeout(function(){ window.location.href = "login.php"; }, 3000);</script>';
-                // You can redirect the user to a login page or another destination
-                exit();
+                echo '
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .countdown {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Success!</h1>
+        <p>Password Changed Successfull.</p>
+        <p><a href="login.php">Go back to forgot password</a></p>
+        <div class="countdown" id="countdown">Redirecting in 1 seconds...</div>
+    </div>
+
+    <script>
+        // Countdown timer for redirection
+        var countdownElement = document.getElementById("countdown");
+        var countdown = 1;
+
+        var timer = setInterval(function () {
+            countdown--;
+            countdownElement.textContent = "Redirecting in " + countdown + " seconds...";
+            if (countdown <= 0) {
+                clearInterval(timer);
+                window.location.href = "login.php";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>';
+                exit(); // Make sure to exit after echoing the HTML to prevent further execution
             } else {
-                echo 'Error updating password: ' . $conn->error;
+                $errorMessage = 'Error updating password: ' . $conn->error;
             }
         }
     } else {
-        // Invalid token, show an error message or redirect as needed
-        echo "Invalid token. Please request a new password change link.";
-        exit();
+        // Invalid token, show an error message
+        $errorMessage = "Invalid token. Please request a new password change link.";
     }
 } else {
-    // Token not provided in the URL, show an error message or redirect as needed
-    echo "Token not found in the URL.";
-    exit();
+    // Token not provided in the URL, show an error message
+    $errorMessage = "Token not found in the URL.";
 }
+
+// After all PHP logic, you can include the HTML for displaying error messages
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,9 +152,9 @@ if (isset($_GET['tokenn'])) {
 
         .container {
             position: absolute;
-            left: 10%;
+            left: 3%;
             top: 20%;
-            width: 80%;
+            width: 90%;
             max-width: 450px;
             margin: 0 auto;
             padding: 20px;
@@ -101,18 +166,14 @@ if (isset($_GET['tokenn'])) {
         .header {
             display: flex;
             align-items: center;
+            justify-content: center;
             margin-bottom: 20px;
-        }
-
-        .header img {
-            width: 40px;
-            height: auto;
-            margin-right: 10px;
         }
 
         .header h1 {
             font-size: 24px;
             color: #333;
+            text-align: center;
         }
 
         .password-form label {
@@ -123,21 +184,14 @@ if (isset($_GET['tokenn'])) {
         }
 
         .password-form input[type="password"] {
-            width: 80%;
+            width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 16px;
             margin-top: 5px;
-        }
-
-        .password-form input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            margin-top: 5px;
+            box-sizing: border-box;
+            /* Ensure padding is included in width */
         }
 
         .password-form button[type="submit"] {
@@ -149,10 +203,21 @@ if (isset($_GET['tokenn'])) {
             cursor: pointer;
             font-size: 16px;
             margin-top: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            /* Ensure padding is included in width */
         }
 
-        .password-form button[type="submit"]:hover {
-            background-color: #357ae8;
+        .success-msg {
+            color: green;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .error-msg {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
         }
 
         /* Media Queries for responsiveness */
@@ -167,10 +232,7 @@ if (isset($_GET['tokenn'])) {
             }
 
             .password-form label,
-            .password-form input[type="password"] {
-                font-size: 14px;
-            }
-
+            .password-form input[type="password"],
             .password-form button[type="submit"] {
                 font-size: 14px;
             }
@@ -183,9 +245,14 @@ if (isset($_GET['tokenn'])) {
         <div class="header">
             <h1>Password Change</h1>
         </div>
-        <?php if (isset($error)) : ?>
+        <?php if (isset($errorMessage)) : ?>
             <p class="error-msg">
-                <?php echo $error; ?>
+                <?php echo $errorMessage; ?>
+            </p>
+        <?php endif; ?>
+        <?php if (isset($successMessage)) : ?>
+            <p class="success-msg">
+                <?php echo $successMessage; ?>
             </p>
         <?php endif; ?>
         <form class="password-form" method="POST">
