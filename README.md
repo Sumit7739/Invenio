@@ -2,7 +2,7 @@
 
 This README.md file showcases a web-based inventory management system designed to streamline inventory and sales data management for businesses.
 
-To visit click on the link -[text](https://ppwala.000webhostapp.com)
+To visit click on the link -[PPWALA](https://ppwala.000webhostapp.com)
 
 **Key Features:**
 
