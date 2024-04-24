@@ -319,9 +319,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // header("Location: success.html");
         // exit;
         // Redirect after successful insertion
-        // $insertedItemId = $conn->insert_id;
-        // header("Location: invent_success.php?id=$insertedItemId");
-        // exit;
+        $insertedItemId = $conn->insert_id;
+        header("Location: invent_success.php?id=$insertedItemId");
+        exit;
         
         // $stmt_items->close();
         // $stmt_units->close();
