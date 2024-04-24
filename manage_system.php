@@ -36,6 +36,18 @@ $conn->close();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="style_main.css">
+    <style>
+        .create-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
