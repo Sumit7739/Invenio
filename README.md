@@ -4,7 +4,16 @@ This README.md file showcases a web-based inventory management system designed t
 
 To visit click on the link -[PPWALA](https://ppwala.000webhostapp.com)
 
-![Alt text for your image](image/image.png "width=400px height=300px")
+![Home page](image/home.png "width=400px height=300px")
+![Login page](image/login.png "width=400px height=300px")
+![Welcome page](image/welcome.png "width=400px height=300px")
+![Dashboard](image/dashboard.png "width=400px height=300px")
+![Inventory page](image/inventory.png "width=400px height=300px")
+![Inventory Data page](image/inventory_data.png "width=400px height=300px")
+![Inventory Chart page](image/inventory_chart.png "width=400px height=300px")
+![Inventory Table page](image/inventory_table.png "width=400px height=300px")
+![Stock Table page](image/stock.png "width=400px height=300px")
+![User page](image/user.png "width=400px height=300px")
 
 **Key Features:**
 
