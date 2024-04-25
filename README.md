@@ -4,6 +4,8 @@ This README.md file showcases a web-based inventory management system designed t
 
 To visit click on the link -[PPWALA](https://ppwala.000webhostapp.com)
 
+![Alt text for your image](image/image.png "width=400px height=300px")
+
 **Key Features:**
 
 - **Inventory Management:**
