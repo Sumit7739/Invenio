@@ -255,8 +255,7 @@ if (!isset($_SESSION['id'])) {
             <label for="cupsToggle" class="toggle-label" onclick="toggleCups()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">CUPS <span id="cupsToggleIcon">▼</span></label><br>
             <div id="cupsSection" class="container">
 
-                <!-- Repeat this block for each CUPS unit (e.g., cups50, cups60, cups80, cups100, cups150, cups210, cups250) -->
-                <label for="cups50">50 ml CUPS:</label>
+                <label for="cups50">50 ml:</label>
                 <input type="number" step="0.01" id="cups50" name="cups50">
                 <select id="cups50_unit" name="cups50_unit" required class="unit">
                     <option value="NULL">Select Unit</option>
@@ -354,7 +353,7 @@ if (!isset($_SESSION['id'])) {
                     <option value="g">g</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select>
-                <input type="hidden" name="bd5_default" value="NULL">
+                <input type="hidden" name="bd5_unit_default" value="NULL">
                 <br>
 
                 <label for="bd6">6-inch BD :</label>
@@ -365,7 +364,7 @@ if (!isset($_SESSION['id'])) {
                     <option value="g">g</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select>
-                <input type="hidden" name="bd6_default" value="NULL">
+                <input type="hidden" name="bd6_unit_default" value="NULL">
                 <br>
 
                 <label for="bd7">7-inch BD :</label>

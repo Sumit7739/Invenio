@@ -1,6 +1,5 @@
 <?php
 
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -223,7 +222,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    include ('config.php');
+    include('config.php');
 
 
     // Prepare and bind SQL statement for inventory_items table
@@ -309,13 +308,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cp9_unit = $_POST["cp9_unit"];
     $stmt_units->execute();
 
-    $insertedItemId = $conn->insert_id;
+     $insertedItemId = $conn->insert_id;
     header("Location: sales_success.php?id=$insertedItemId");
     exit;
+    
     // Close statements and connection
     // $stmt_items->close();
     // $stmt_units->close();
     // $conn->close();
-
-    // Redirect after successful insertion
 }

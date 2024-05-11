@@ -8,7 +8,6 @@ require 'PHPMailer-master/src/SMTP.php';
 require 'PHPMailer-master/src/Exception.php';
 
 
-
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userEmail = $_POST['email']; // Retrieve the entered email

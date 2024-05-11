@@ -218,8 +218,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute()) {
                 // Redirect to another page
-                header("Location: sales_success.php?id=$insertedItemId");
-                exit(); // Make sure to call exit after the header to prevent further execution
+                header("Location: success.html");
+                exit();
             } else {
                 echo "Error updating records: " . $stmt->error;
             }

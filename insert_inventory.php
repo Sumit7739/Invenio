@@ -5,11 +5,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST['bl5_unit'])) {
         $bl5Unit = $_POST['bl5_unit'];
+        // Check if the selected unit is "none" and use the value from the hidden field if it is
         if ($bl5Unit === "NULL") {
             $bl5Unit = $_POST['bl5_unit_default']; // Use the value from the hidden field (NULL)
         }
@@ -223,6 +223,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+
+
+
     // Define database connection credentials
     include ('config.php');
 
@@ -313,13 +316,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $cp9_unit = $_POST["cp9_unit"];
         $stmt_units->execute();
 
-        // Close statements and connection
-        
-        // Redirect after successful insertion
-        // header("Location: success.html");
-        // exit;
-        // Redirect after successful insertion
-        $insertedItemId = $conn->insert_id;
+       $insertedItemId = $conn->insert_id;
         header("Location: invent_success.php?id=$insertedItemId");
         exit;
         
