@@ -1,6 +1,6 @@
 -- MYSQL code for database table creation for inventory items 
 -- which is stored in Decimal format of 10.000, here units are not saved
-CREATE TABLE sales_item(
+CREATE TABLE inventory_item(
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     date DATE NOT NULL,
@@ -165,3 +165,5 @@ CREATE TABLE users (
     verification_status INT DEFAULT 0,
     token VARCHAR(255)
 );
+
+-- 8inchi or 9inchi payal ld

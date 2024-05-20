@@ -58,7 +58,15 @@ $conn->close();
                             <p>Quickly enter new inventory items.</p>
                         </div>
                         <div class="small-box">
+                            <a href="addmore_inventory.php">Add More Items</a>
+                            <p>Quickly enter more new inventory items.</p>
+                        </div>
+                        <div class="small-box">
                             <a href="view_inventory.php">View Inventory</a>
+                            <p>Access and view your inventory details.</p>
+                        </div>
+                        <div class="small-box">
+                            <a href="view_moreinventory.php">View 2nd Inventory</a>
                             <p>Access and view your inventory details.</p>
                         </div>
                     </div>
@@ -71,9 +79,17 @@ $conn->close();
                         <div class="small-box">
                             <a href="sales.php">Add Sales</a>
                             <p>Quickly enter new sales records.</p>
+                        </div> 
+                        <div class="small-box">
+                            <a href="moresales.php">Add More Sales</a>
+                            <p>Quickly enter new sales records.</p>
                         </div>
                         <div class="small-box">
                             <a href="view_sales.php">View Sales</a>
+                            <p>Access and view your sales details.</p>
+                        </div>
+                        <div class="small-box">
+                            <a href="view_moresales.php">View More Sales</a>
                             <p>Access and view your sales details.</p>
                         </div>
                     </div>
@@ -84,6 +100,10 @@ $conn->close();
                     <p>Get detailed reports and insights into your Stocks.</p>
                     <div class="small-box">
                         <a href="stock.php">Stock Table</a>
+                        <p>Quickly view new Stocks reports.</p>
+                    </div> 
+                    <div class="small-box">
+                        <a href="more_stock.php">2nd Stock Table</a>
                         <p>Quickly view new Stocks reports.</p>
                     </div>
                 </div>
