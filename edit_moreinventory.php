@@ -4,7 +4,6 @@ if (isset($_GET['id'])) {
 
     include('config.php');
 
-
     // Check if the connection was successful
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -14,8 +13,11 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Prepare and execute the SQL query with a join operation to fetch data from two tables
-    $sql = "SELECT item.*, unit.* FROM moreinventory_item AS item INNER JOIN moreinventory_unit AS unit ON item.id = unit.id WHERE item.id = ?";
+    $sql = "SELECT item.*, unit.* FROM moreinventory_item AS item INNER JOIN moreinventory_unit AS unit ON item.id = unit.item_id WHERE item.id = ?";
     $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
+    }
     $stmt->bind_param('i', $id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -25,13 +27,11 @@ if (isset($_GET['id'])) {
         $row = $result->fetch_assoc();
 
         // Store fetched data into variables
-        // $name = $row['name'];
         $date = $row['date'];
         $py8 = $row["py8"];
         $payal8_unit = $row["payal8_unit"];
         $py9 = $row["py9"];
         $payal9_unit = $row["payal9_unit"];
-       
 
         // Close the prepared statement and database connection
         $stmt->close();
@@ -65,20 +65,19 @@ if (isset($_GET['id'])) {
             <i id="homeIcon" class="fas fa-home"></i>
         </a>
 
-
         <h1>Inventory</h1>
         <h2>Edit Items</h2>
         <form action="updatemore_inventory.php" method="POST">
-
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
             <label for="date">Date:</label>
-            <input type="date" id="date" name="date" value="<?php echo $date; ?>" required><br><br>
+            <input type="date" id="date" name="date" value="<?php echo htmlspecialchars($date); ?>" required><br><br>
 
             <button type="button" class="toggle-btn primary-btn" onclick="toggleAllSections()"><i class="fas fa-toggle-on"></i></button>
             <label for="blackLooseToggle" onclick="toggleBlackLoose()" style="color:#ff7300; font-weight: bold; font-size: 20px; cursor: pointer;">Payal LD <span id="toggleIcon">▼</span></label><br>
             <div id="blackLooseSection" class="container">
 
                 <label for="py8">8-inch:</label>
-                <input type="number" step="0.01" id="py8" name="py8" value="<?php echo $py8; ?>">
+                <input type="number" step="0.01" id="py8" name="py8" value="<?php echo htmlspecialchars($py8); ?>">
                 <select id="payal8_unit" name="payal8_unit">
                     <option value="" selected disabled hidden>Select Unit</option>
                     <option value="kg" <?php if ($payal8_unit == 'kg') echo 'selected'; ?>>kg</option>
@@ -86,10 +85,8 @@ if (isset($_GET['id'])) {
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select><br><br>
 
-
-                <!-- Repeat this pattern for other fields -->
                 <label for="py9">9-inch:</label>
-                <input type="number" step="0.01" id="py9" name="py9" value="<?php echo $py9; ?>">
+                <input type="number" step="0.01" id="py9" name="py9" value="<?php echo htmlspecialchars($py9); ?>">
                 <select id="payal9_unit" name="payal9_unit">
                     <option value="" selected disabled hidden>Select Unit</option>
                     <option value="kg" <?php if ($payal9_unit == 'kg') echo 'selected'; ?>>kg</option>

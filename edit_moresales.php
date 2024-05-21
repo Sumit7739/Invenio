@@ -16,6 +16,9 @@ if (isset($_GET['id'])) {
     // Prepare and execute the SQL query with a join operation to fetch data from two tables
     $sql = "SELECT item.*, unit.* FROM moresales_item AS item INNER JOIN moresales_unit AS unit ON item.id = unit.id WHERE item.id = ?";
     $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
+    }
     $stmt->bind_param('i', $id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -69,7 +72,7 @@ if (isset($_GET['id'])) {
         <h1>Sales</h1>
         <h2>Edit Items</h2>
         <form action="updatemore_sales.php" method="POST">
-
+        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
             <label for="date">Date:</label>
             <input type="date" id="date" name="date" value="<?php echo $date; ?>" required><br><br>
 
