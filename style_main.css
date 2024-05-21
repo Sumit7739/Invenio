@@ -14,14 +14,15 @@
   header {
       background-color: #216dbe;
       color: #fff;
-      padding: 10px 0;
+      width: 100%;
+      padding: 10px 10px;
       text-align: center;
       border-radius: 10px;
       position: relative;
   }
 
   header h1 {
-      font-size: 30px;
+      font-size: 25px;
       margin: 0;
   }
 
@@ -35,6 +36,7 @@
   }
 
   footer {
+    margin-top: 20px;
       bottom: 0;
       font-size: 12px;
       background-color: #333;
@@ -42,6 +44,7 @@
       text-align: center;
       padding: 10px 0;
       width: 100%;
+      border-radius: 10px;
   }
 
   .footer-text {
@@ -116,8 +119,8 @@
   .logout-btn {
       display: inline-block;
       padding: 10px 20px;
-      background-color: #141414;
-      color: #fff;
+      background-color: #ffffff;
+      color: #000000;
       border: none;
       border-radius: 5px;
       cursor: pointer;
@@ -125,7 +128,7 @@
   }
 
   .logout-btn:hover {
-      background-color: #141414d7;
+      background-color: #ffffffd7;
   }
 
   /* Responsive Styles */

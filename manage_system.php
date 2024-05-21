@@ -79,7 +79,7 @@ $conn->close();
                         <div class="small-box">
                             <a href="sales.php">Add Sales</a>
                             <p>Quickly enter new sales records.</p>
-                        </div> 
+                        </div>
                         <div class="small-box">
                             <a href="moresales.php">Add More Sales</a>
                             <p>Quickly enter new sales records.</p>
@@ -101,7 +101,7 @@ $conn->close();
                     <div class="small-box">
                         <a href="stock.php">Stock Table</a>
                         <p>Quickly view new Stocks reports.</p>
-                    </div> 
+                    </div>
                     <div class="small-box">
                         <a href="more_stock.php">2nd Stock Table</a>
                         <p>Quickly view new Stocks reports.</p>
@@ -135,14 +135,30 @@ $conn->close();
                         <p>Access and view your Inventory details.</p>
                     </div>
                 </div>
+                <div class="feature-box">
+                    <i class="fas fa-box"></i>
+                    <h3>Extra Tools</h3>
+                    <p>Access additional features and tools to enhance your inventory management experience</p>
+                    <div class="small-box">
+                        <a href="users.php" class="logout-bt">
+                            <i class="fas fa-user"></i> See Users
+                        </a>
+                        <p>Quickly view users record.</p>
+                    </div>
+                    <div class="small-box">
+                        <a href="game.html" class="logout-bt">
+                            <i class="fas fa-gamepad"></i> Play Game
+                        </a>
+                        <p>Play simple games to pass time.</p>
+                    </div>
+                    <div class="small-box">
+                        <a href="logout.php" class="logout-bt">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                        <p>Logout from the session</p>
+                    </div>
+                </div>
             </div>
-            <a href="logout.php" class="logout-btn">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </a>
-            <a href="users.php" class="logout-btn">
-                <i class="fas fa-user"></i> See Users
-            </a>
-        </div>
     </div>
     <footer>
         <p>Created by Sumit and Sahil</p>

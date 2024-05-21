@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* justify-content: center; */
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #d44141, #e0e0e0, #2196f3);
+      /* background-color: #f5f5f5; */
+    }
+
+    h1 {
+      margin-top: 50px;
+      margin-bottom: 120px;
+      color: #333;
+    }
+
+
+    .board {
+      margin-top: 35px;
+      display: grid;
+      grid-template-columns: repeat(3, 150px);
+      gap: 15px;
+      background: linear-gradient(135deg, #8B4513, #000080, #4B0082);
+      border: 2px solid #ccc;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    }
+
+    .cell {
+      width: 150px;
+      height: 150px;
+      font-size: 36px;
+      text-align: center;
+      line-height: 150px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .cell.X,
+    .cell.O {
+      pointer-events: none;
+      color: #333;
+    }
+
+    .cell.X {
+      color: #f44336;
+    }
+
+    .cell.O {
+      color: #2196f3;
+    }
+
+    .cell:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Add styles for the score board */
+    .score-board {
+      width: 50%;
+      transform: translateY(-50%);
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 10px 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+      text-align: center;
+      color: #333;
+    }
+
+    .score {
+      display: flex;
+      padding: 10px;
+      align-items: center;
+    }
+
+    .score span {
+      margin-right: 5px;
+    }
+
+    .btn {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .btn a {
+      text-decoration: none;
+    }
+
+    .btn button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 15px 22px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn button:hover {
+      background-color: #555;
+    }
+
+    /* Media queries for responsiveness */
+    @media screen and (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .header-buttons {
+        margin-top: 10px;
+      }
+
+      .play-mode-cards {
+        text-align: center;
+      }
+    }
+
+    /* Mobile responsiveness */
+    @media screen and (max-width: 480px) {
+      .board {
+        margin-top: 15px;
+        display: grid;
+        grid-template-columns: repeat(3, 120px);
+        gap: 5px;
+        background: linear-gradient(135deg, #8B4513, #000080, #4B0082);
+        /* background-color: #fff; */
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .cell {
+        width: 120px;
+        height: 120px;
+        font-size: 36px;
+        text-align: center;
+        line-height: 100px;
+        border: 2px solid #ccc;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .header-title {
+        font-size: 20px;
+      }
+
+      .play-mode-card {
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+
+      .popup {
+        max-width: 350px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Pass And Play</h1>
+  <div class="score-board">
+    <div class="score">
+      <span>Player X:</span>
+      <span id="scoreX">0</span>
+    </div>
+    <div class="score">
+      <span>Player O:</span>
+      <span id="scoreO">0</span>
+    </div>
+  </div>
+  <div class="board" id="board">
+    <div class="cell" onclick="makeMove(this)"></div>
+    <div class="cell" onclick="makeMove(this)"></div>
+    <div class="cell" onclick="makeMove(this)"></div>
+    <div class="cell" onclick="makeMove(this)"></div>
+    <div class="cell" onclick="makeMove(this)"></div>
+    <div class="cell" onclick="makeMove(this)"></div>
+    <div class="cell" onclick="makeMove(this)"></div>
+    <div class="cell" onclick="makeMove(this)"></div>
+    <div class="cell" onclick="makeMove(this)"></div>
+  </div>
+  <div class="btn">
+    <a href="tictactoe.html"><button>Back</button></a>
+  </div>
+  <script>
+    let currentPlayer = 'X';
+    let scoreX = 0;
+    let scoreO = 0;
+    const board = document.getElementById('board');
+    const cells = board.getElementsByClassName('cell');
+    const scoreXElement = document.getElementById('scoreX');
+    const scoreOElement = document.getElementById('scoreO');
+
+    function makeMove(cell) {
+      if (!cell.textContent) {
+        cell.textContent = currentPlayer;
+        cell.classList.add(currentPlayer);
+        if (checkWinner()) {
+          updateScore(currentPlayer);
+          setTimeout(() => {
+            alert(`${currentPlayer} wins!`);
+            resetBoard();
+          }, 100);
+        } else if ([...cells].every(cell => cell.textContent !== '')) {
+          setTimeout(() => {
+            alert("It's a draw!");
+            resetBoard();
+          }, 100);
+        } else {
+          currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        }
+      }
+    }
+
+    function checkWinner() {
+      const winningCombinations = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+      ];
+
+      for (const combination of winningCombinations) {
+        const [a, b, c] = combination;
+        if (cells[a].textContent && cells[a].textContent === cells[b].textContent && cells[a].textContent === cells[c].textContent) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function updateScore(player) {
+      if (player === 'X') {
+        scoreX++;
+        scoreXElement.textContent = scoreX;
+      } else {
+        scoreO++;
+        scoreOElement.textContent = scoreO;
+      }
+    }
+
+    function resetBoard() {
+      for (const cell of cells) {
+        cell.textContent = '';
+        cell.classList.remove('X', 'O');
+      }
+      currentPlayer = 'X';
+    }
+  </script>
+</body>
+
+</html>

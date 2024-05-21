@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe Play Modes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #8B4513, #000080, #4B0082);
+            margin: 0;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #6e6c6c8c;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.9);
+            color: #fffcfc;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .header-title {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-button {
+            font-size: 18px;
+            background-color: #ff5f6d;
+            border: none;
+            margin-right: 15px;
+            border-radius: 5px;
+            padding: 8px 15px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .header-button:hover {
+            background-color: #e63946;
+        }
+
+        .container {
+            position: relative;
+            width: 90%;
+            height: auto;
+            margin: 0 auto;
+            top: 10vh;
+            text-align: center;
+            padding: 20px;
+            padding-bottom: 20px;
+            background: linear-gradient(135deg, #d44141, #e0e0e0, #2196f3);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #510461;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .play-mode-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .play-mode-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #2196f3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .play-mode-button:hover {
+            background-color: #1976d2;
+        }
+
+        .illustration {
+            max-width: 10%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .context {
+            margin-top: 10px;
+            color: #666;
+            font-size: 16px;
+        }
+
+        .play-mode-card {
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease;
+        }
+
+        .play-mode-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .play-mode-computer {
+            background: linear-gradient(135deg, #f9e4b7, #ff9d6c);
+        }
+
+        .play-mode-pass {
+            background: linear-gradient(135deg, #d9ead3, #64b678);
+        }
+
+        .play-mode-online {
+            background: linear-gradient(135deg, #cfe2f3, #679ad5);
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .popup {
+            background-color: #84dddd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .popup h2 {
+            margin-top: 0;
+        }
+
+        .popup-buttons {
+            margin-top: 20px;
+        }
+
+        .popup-button {
+            font-size: 18px;
+            background-color: #ff5f6d;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup-button:hover {
+            background-color: #e63946;
+        }
+
+        .level-buttons {
+            margin-top: 20px;
+        }
+
+        .level-button {
+            font-size: 18px;
+            background-color: #ff5f6d;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .level-button:hover {
+            background-color: #e63946;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 16px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .close-button:hover {
+            color: #333;
+        }
+
+        .footer {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            text-align: center;
+            padding: 20px;
+            padding-bottom: 20px;
+            background: linear-gradient(135deg, #d44141, #e0e0e0, #2196f3);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+            font-size: 1em;
+        }
+
+        /* Media queries for responsiveness */
+        @media screen and (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-buttons {
+                margin-top: 10px;
+            }
+
+            .play-mode-card {
+                flex: 1 1 100%;
+            }
+        }
+
+        /* Mobile responsiveness */
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .header-title {
+                font-size: 1.2rem;
+            }
+
+            .play-mode-card {
+                flex: 1 1 100%;
+                padding: 10px;
+                margin: 5px 0;
+            }
+
+            .popup {
+                max-width: 300px;
+            }
+
+            .footer {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <div class="header-title">Tic Tac Toe</div>
+        <!-- <div class="header-buttons">
+            <button class="header-button">Login</button>
+            <button class="header-button">Sign Up</button>
+        </div> -->
+    </header>
+    <div class="container">
+        <h1>Choose Your Play Mode</h1>
+        <div class="play-mode-cards">
+            <div class="play-mode-card play-mode-computer">
+                <button class="play-mode-button" onclick="openLevelPopup('computer')">Play with Computer</button>
+                <p>Challenge our smart AI and test your skills against the computer opponent.</p>
+            </div>
+            <div class="play-mode-card play-mode-pass">
+                <button class="play-mode-button" onclick="startGame('pass')">Pass and Play</button>
+                <p>Enjoy a classic experience with friends by taking turns on the same device.</p>
+            </div>
+            <!-- <div class="play-mode-card play-mode-online">
+                <button class="play-mode-button" onclick="openPopup()">Play with Friend Online</button>
+                <p>Connect with a friend remotely and play a game of Tic Tac Toe together online.</p>
+            </div> -->
+        </div>
+        <div class="popup-overlay" id="levelPopupOverlay">
+            <div class="popup">
+                <h2>Select Difficulty Level</h2>
+                <div class="level-buttons">
+                    <button class="level-button" onclick="startGame('computer', 'easy')">Easy</button>
+                    <button class="level-button" onclick="startGame('computer', 'hard')">Hard</button>
+                    <button class="level-button" onclick="closeLevelPopup()">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- <img class="illustration" src="tic_tac_toe_illustration.png" alt="Tic Tac Toe Illustration"> -->
+        <!-- <div class="popup-overlay" id="popupOverlay">
+            <div class="popup">
+                <h2>Login or Sign Up</h2>
+                <p>This is under development will be added in next update</p>
+                <p>You need to be logged in to play online. Please login or sign up to continue.</p>
+                <div class="popup-buttons">
+                    <button class="popup-button" onclick="openLogin()">Login</button>
+                    <button class="popup-button" onclick="openSignup()">Sign Up</button>
+                    <button class="popup-button" onclick="closePopup()">Close</button>
+                </div>
+            </div>
+        </div> -->
+        <div class="footer">
+            <!-- <p>Win 100rs if you win vs computer in hard mode</p> -->
+            <!-- <p>Send the Screenshot to srisumit4@gmail.com to recieve your winninng money.</p> -->
+            <p>Made By Sumit Srivastava</p>
+        </div>
+
+        <a href="game.html"><button class="header-button">Back</button></a>
+        <script>
+            // Your existing JavaScript code ...
+
+            function openLevelPopup() {
+                document.getElementById("levelPopupOverlay").style.display = "flex";
+            }
+
+            function closeLevelPopup() {
+                document.getElementById("levelPopupOverlay").style.display = "none";
+            }
+
+            function openPopup() {
+                document.getElementById("popupOverlay").style.display = "flex";
+            }
+
+            function closePopup() {
+                document.getElementById("popupOverlay").style.display = "none";
+            }
+
+            function openLogin() {
+                // Implement logic to open the login form or redirect to the login page
+                closePopup();
+            }
+
+            function openSignup() {
+                // Implement logic to open the signup form or redirect to the signup page
+                closePopup();
+            }
+            function startGame(mode, level) {
+                if (mode === 'computer') {
+                    if (level === 'easy') {
+                        window.location.href = 'computer_play_easy.html';
+                    } else if (level === 'hard') {
+                        window.location.href = 'computer_play_hard.html';
+                    }
+                } else if (mode === 'pass') {
+                    // Redirect to pass and play page
+                    window.location.href = 'pass_and_play.html';
+                } else if (mode === 'online') {
+                    // Redirect to online play page
+                    window.location.href = 'online_play.html';
+                }
+            }
+
+        </script>
+</body>
+
+</html>
