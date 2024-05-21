@@ -8,123 +8,85 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #8B4513, #000080, #4B0082);
-            /* Royal color blend */
-            margin: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            color: #333;
         }
 
-        h1 {
-            position: absolute;
-            top: 1%;
-            margin-bottom: 20px;
-            color: #dbdada;
-        }
-
+        h1,
         h2 {
-            position: absolute;
-            top: 8%;
-            color: #dbdada;
+            margin: 0.5em 0;
         }
 
         .board {
-            margin-top: 30px;
             display: grid;
-            grid-template-columns: repeat(3, 120px);
-            gap: 5px;
-            background: linear-gradient(135deg, #0b7966, #c57f5b);
-            border: 1px solid #ccc;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 10px;
+            margin: 20px 0;
         }
 
         .cell {
-            width: 120px;
-            height: 120px;
-            font-size: 36px;
-            text-align: center;
-            line-height: 120px;
-            border: 2px solid #ccc;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            background-color: #fff;
+            border: 1px solid #ddd;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .cell.X,
-        .cell.O {
-            pointer-events: none;
-            color: #333;
-        }
-
-        .cell.X {
-            color: #f44336;
-        }
-
-        .cell.O {
-            color: #2196f3;
+            transition: background-color 0.3s;
         }
 
         .cell:hover {
-            background-color: #f0f0f0;
+            background-color: #f1f1f1;
+        }
+
+        .btn {
+            margin: 20px 0;
+        }
+
+        .btn button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn button:hover {
+            background-color: #357ae8;
         }
 
         .score {
-            position: absolute;
-            top: 22%;
-            left: 5%;
-            right: 20px;
-            transform: translateY(-50%);
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 10px 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             text-align: center;
-            color: #333;
         }
 
         .score h2 {
-            margin-top: 0;
-            font-size: 24px;
-            color: #000000;
+            margin-bottom: 10px;
         }
 
         .score p {
-            margin: 10px 0;
-            font-size: 18px;
+            margin: 5px 0;
         }
 
         .score span {
             font-weight: bold;
-            color: #2196f3;
         }
 
-        .btn {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .btn a {
-            text-decoration: none;
-        }
-
-        .btn button {
-            position: absolute;
-            top: 80%;
-            left: 40%;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            padding: 15px 22px;
-            font-size: 22px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn button:hover {
-            background-color: #555;
+        #message {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -143,6 +105,7 @@
         <div class="cell" onclick="makeMove(this)"></div>
         <div class="cell" onclick="makeMove(this)"></div>
     </div>
+    <div id="message" style="display: none;">Computer: Thinking...</div>
     <div class="btn">
         <a href="tictactoe.html"><button>Back</button></a>
     </div>
@@ -151,38 +114,188 @@
         <p>You: <span id="playerScore">0</span></p>
         <p>Computer: <span id="computerScore">0</span></p>
     </div>
-    <script>
-         document.addEventListener('DOMContentLoaded', function () {
-        const board = document.getElementById('board');
-        const cells = board.getElementsByClassName('cell');
-        const playerScoreElement = document.getElementById('playerScore');
-        const computerScoreElement = document.getElementById('computerScore');
-        let currentPlayer = 'X';
-        let playerScore = 0;
-        let computerScore = 0;
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const board = document.getElementById('board');
+            const cells = board.getElementsByClassName('cell');
+            const playerScoreElement = document.getElementById('playerScore');
+            const computerScoreElement = document.getElementById('computerScore');
+            let currentPlayer = 'X';
+            let playerScore = 0;
+            let computerScore = 0;
 
-        board.addEventListener('click', handleCellClick);
+            board.addEventListener('click', handleCellClick);
 
-        function handleCellClick(event) {
-            const cell = event.target;
-            if (!cell.textContent) {
-                cell.textContent = 'X'; // Human player's move
-                if (checkWinner('X')) {
-                    playerScore++;
-                    updateScores();
-                    setTimeout(() => {
-                        alert('You win!');
-                        resetBoard();
-                    }, 100);
-                    return;
-                } else if ([...cells].every(cell => cell.textContent !== '')) {
-                    setTimeout(() => {
-                        alert("It's a draw!");
-                        resetBoard();
-                    }, 100);
-                    return;
+            function handleCellClick(event) {
+                const cell = event.target;
+                if (!cell.textContent) {
+                    cell.textContent = 'X'; // Human player's move
+                    if (checkWinner('X')) {
+                        playerScore++;
+                        updateScores();
+                        setTimeout(() => {
+                            alert('You win!');
+                            resetBoard();
+                        }, 100);
+                        return;
+                    } else if ([...cells].every(cell => cell.textContent !== '')) {
+                        setTimeout(() => {
+                            alert("It's a draw!");
+                            resetBoard();
+                        }, 100);
+                        return;
+                    }
+                    // Computer's move
+                    const bestMove = findBestMove();
+                    if (bestMove !== -1) {
+                        cells[bestMove].textContent = 'O';
+                        if (checkWinner('O')) {
+                            computerScore++;
+                            updateScores();
+                            setTimeout(() => {
+                                alert('Computer wins!');
+                                resetBoard();
+                            }, 100);
+                        }
+                    }
                 }
-                // Computer's move
+            }
+
+            function findBestMove() {
+                let bestMove = -1;
+                let bestScore = -Infinity;
+                for (let i = 0; i < cells.length; i++) {
+                    if (!cells[i].textContent) {
+                        cells[i].textContent = 'O';
+                        let score = minimax(cells, 0, false);
+                        cells[i].textContent = '';
+                        if (score > bestScore) {
+                            bestScore = score;
+                            bestMove = i;
+                        }
+                    }
+                }
+                return bestMove;
+            }
+
+            //Minimax algorithm for AI move calculation
+            function minimax(board, depth, isMaximizing) {
+                const scores = {
+                    X: -1,
+                    O: 1,
+                    draw: 0
+                };
+
+                if (checkWinner('O')) {
+                    return scores['O'];
+                }
+
+                if (checkWinner('X')) {
+                    return scores['X'];
+                }
+
+                if ([...cells].every(cell => cell.textContent !== '')) {
+                    return scores['draw'];
+                }
+
+                if (isMaximizing) {
+                    let bestScore = -Infinity;
+                    for (let i = 0; i < cells.length; i++) {
+                        if (!cells[i].textContent) {
+                            cells[i].textContent = 'O';
+                            const score = minimax(cells, depth + 1, false);
+                            cells[i].textContent = '';
+                            bestScore = Math.max(score, bestScore);
+                        }
+                    }
+                    return bestScore;
+                } else {
+                    let bestScore = Infinity;
+                    for (let i = 0; i < cells.length; i++) {
+                        if (!cells[i].textContent) {
+                            cells[i].textContent = 'X';
+                            const score = minimax(cells, depth + 1, true);
+                            cells[i].textContent = '';
+                            bestScore = Math.min(score, bestScore);
+                        }
+                    }
+                    return bestScore;
+                }
+            }
+
+            // Check if a player has won the game
+            function checkWinner(player) {
+                const winningCombinations = [
+                    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                    [0, 4, 8], [2, 4, 6]
+                ];
+
+                for (const combination of winningCombinations) {
+                    const [a, b, c] = combination;
+                    if (cells[a].textContent === player && cells[b].textContent === player && cells[c].textContent === player) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            function resetBoard() {
+                for (const cell of cells) {
+                    cell.textContent = '';
+                }
+                currentPlayer = 'X';
+            }
+
+            function updateScores() {
+                playerScoreElement.textContent = playerScore;
+                computerScoreElement.textContent = computerScore;
+            }
+        });
+    </script> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const board = document.getElementById('board');
+            const cells = board.getElementsByClassName('cell');
+            const playerScoreElement = document.getElementById('playerScore');
+            const computerScoreElement = document.getElementById('computerScore');
+            const messageElement = document.getElementById('message'); // New element for the message
+            let currentPlayer = 'X';
+            let playerScore = 0;
+            let computerScore = 0;
+
+            board.addEventListener('click', handleCellClick);
+
+            function handleCellClick(event) {
+                const cell = event.target;
+                if (!cell.textContent && currentPlayer === 'X') {
+                    cell.textContent = 'X'; // Human player's move
+                    if (checkWinner('X')) {
+                        playerScore++;
+                        updateScores();
+                        setTimeout(() => {
+                            alert('You win!');
+                            resetBoard();
+                        }, 100);
+                        return;
+                    } else if ([...cells].every(cell => cell.textContent !== '')) {
+                        setTimeout(() => {
+                            alert("It's a draw!");
+                            resetBoard();
+                        }, 100);
+                        return;
+                    }
+                    // Show the "Thinking" message
+                    messageElement.textContent = 'Computer: Thinking...';
+                    messageElement.style.display = 'block';
+                    setTimeout(() => {
+                        makeComputerMove();
+                        messageElement.style.display = 'none';
+                    }, 500); // Adjust the delay as needed
+                }
+            }
+
+            function makeComputerMove() {
                 const bestMove = findBestMove();
                 if (bestMove !== -1) {
                     cells[bestMove].textContent = 'O';
@@ -196,99 +309,99 @@
                     }
                 }
             }
-        }
 
-        function findBestMove() {
-            let bestMove = -1;
-            let bestScore = -Infinity;
-            for (let i = 0; i < cells.length; i++) {
-                if (!cells[i].textContent) {
-                    cells[i].textContent = 'O';
-                    let score = minimax(cells, 0, false);
-                    cells[i].textContent = '';
-                    if (score > bestScore) {
-                        bestScore = score;
-                        bestMove = i;
-                    }
-                }
-            }
-            return bestMove;
-        }
-
-        //Minimax algorithm for AI move calculation
-        function minimax(board, depth, isMaximizing) {
-            const scores = {
-                X: -1,
-                O: 1,
-                draw: 0
-            };
-
-            if (checkWinner('O')) {
-                return scores['O'];
-            }
-
-            if (checkWinner('X')) {
-                return scores['X'];
-            }
-
-            if ([...cells].every(cell => cell.textContent !== '')) {
-                return scores['draw'];
-            }
-
-            if (isMaximizing) {
+            function findBestMove() {
+                let bestMove = -1;
                 let bestScore = -Infinity;
                 for (let i = 0; i < cells.length; i++) {
                     if (!cells[i].textContent) {
                         cells[i].textContent = 'O';
-                        const score = minimax(cells, depth + 1, false);
+                        let score = minimax(cells, 0, false);
                         cells[i].textContent = '';
-                        bestScore = Math.max(score, bestScore);
+                        if (score > bestScore) {
+                            bestScore = score;
+                            bestMove = i;
+                        }
                     }
                 }
-                return bestScore;
-            } else {
-                let bestScore = Infinity;
-                for (let i = 0; i < cells.length; i++) {
-                    if (!cells[i].textContent) {
-                        cells[i].textContent = 'X';
-                        const score = minimax(cells, depth + 1, true);
-                        cells[i].textContent = '';
-                        bestScore = Math.min(score, bestScore);
+                return bestMove;
+            }
+
+            //Minimax algorithm for AI move calculation
+            function minimax(board, depth, isMaximizing) {
+                const scores = {
+                    X: -1,
+                    O: 1,
+                    draw: 0
+                };
+
+                if (checkWinner('O')) {
+                    return scores['O'];
+                }
+
+                if (checkWinner('X')) {
+                    return scores['X'];
+                }
+
+                if ([...cells].every(cell => cell.textContent !== '')) {
+                    return scores['draw'];
+                }
+
+                if (isMaximizing) {
+                    let bestScore = -Infinity;
+                    for (let i = 0; i < cells.length; i++) {
+                        if (!cells[i].textContent) {
+                            cells[i].textContent = 'O';
+                            const score = minimax(cells, depth + 1, false);
+                            cells[i].textContent = '';
+                            bestScore = Math.max(score, bestScore);
+                        }
+                    }
+                    return bestScore;
+                } else {
+                    let bestScore = Infinity;
+                    for (let i = 0; i < cells.length; i++) {
+                        if (!cells[i].textContent) {
+                            cells[i].textContent = 'X';
+                            const score = minimax(cells, depth + 1, true);
+                            cells[i].textContent = '';
+                            bestScore = Math.min(score, bestScore);
+                        }
+                    }
+                    return bestScore;
+                }
+            }
+
+            // Check if a player has won the game
+            function checkWinner(player) {
+                const winningCombinations = [
+                    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                    [0, 4, 8], [2, 4, 6]
+                ];
+
+                for (const combination of winningCombinations) {
+                    const [a, b, c] = combination;
+                    if (cells[a].textContent === player && cells[b].textContent === player && cells[c].textContent === player) {
+                        return true;
                     }
                 }
-                return bestScore;
+                return false;
             }
-        }
 
-        // Check if a player has won the game
-        function checkWinner(player) {
-            const winningCombinations = [
-                [0, 1, 2], [3, 4, 5], [6, 7, 8],
-                [0, 3, 6], [1, 4, 7], [2, 5, 8],
-                [0, 4, 8], [2, 4, 6]
-            ];
-
-            for (const combination of winningCombinations) {
-                const [a, b, c] = combination;
-                if (cells[a].textContent === player && cells[b].textContent === player && cells[c].textContent === player) {
-                    return true;
+            function resetBoard() {
+                for (const cell of cells) {
+                    cell.textContent = '';
                 }
+                currentPlayer = 'X';
             }
-            return false;
-        }
 
-        function resetBoard() {
-            for (const cell of cells) {
-                cell.textContent = '';
+            function updateScores() {
+                playerScoreElement.textContent = playerScore;
+                computerScoreElement.textContent = computerScore;
             }
-            currentPlayer = 'X';
-        }
+        });
 
-        function updateScores() {
-            playerScoreElement.textContent = playerScore;
-            computerScoreElement.textContent = computerScore;
-        }
-    });
     </script>
 </body>
 
