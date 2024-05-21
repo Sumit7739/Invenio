@@ -6,16 +6,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     var_dump($_POST);
     // Check if all required fields are filled
     if (!empty($_POST['id']) && !empty($_POST['date'])) {
-        // Retrieve form data
-        $id = isset($_POST['id']) ? $_POST['id'] : null;
-        
-        $date = isset($_POST['date']) ? $_POST['date'] : null;
-
-        $py8 = isset($_POST['py8']) ? $_POST['py8'] : null;
-        $payal8_unit = isset($_POST['payal8_unit']) ? $_POST['payal8_unit'] : null;
-
-        $py9 = isset($_POST['py9']) ? $_POST['py9'] : null;
-        $payal9_unit = isset($_POST['payal9_unit']) ? $_POST['payal9_unit'] : null;
+        $id = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
+        $date = filter_var($_POST['date'], FILTER_SANITIZE_STRING);
+        $py8 = filter_var($_POST['py8'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $payal8_unit = filter_var($_POST['payal8_unit'], FILTER_SANITIZE_STRING);
+        $py9 = filter_var($_POST['py9'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $payal9_unit = filter_var($_POST['payal9_unit'], FILTER_SANITIZE_STRING);
 
       
 
