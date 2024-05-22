@@ -7,12 +7,13 @@ if (!isset($_SESSION['id'])) {
     header('Location: login.php');
     exit();
 }
+
 include('config.php');
 
 $userID = $_SESSION['id'];
 
+// Fetch user's name
 $sql = "SELECT name FROM users WHERE id = '$userID'";
-
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -22,9 +23,33 @@ if ($result->num_rows > 0) {
     $name = "User";
 }
 
+// Fetch the number of unresolved queries
+$sqlQueryCount = "SELECT COUNT(*) as count FROM query WHERE status = 0";
+$resultQueryCount = $conn->query($sqlQueryCount);
+$queryCount = 0;
+if ($resultQueryCount->num_rows > 0) {
+    $row = $resultQueryCount->fetch_assoc();
+    $queryCount = $row['count'];
+}
+
+// Fetch unread updates for the user
+$updatesSql = "SELECT id, update_text, timestamp FROM updates WHERE readtext = 0 ORDER BY timestamp DESC";
+$updatesResult = $conn->query($updatesSql);
+
+$updates = [];
+if ($updatesResult->num_rows > 0) {
+    while ($updateRow = $updatesResult->fetch_assoc()) {
+        $updates[] = $updateRow;
+    }
+}
+
+// Count the number of updates
+$notificationCount = count($updates);
+
 // Close the database connection
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,13 +61,159 @@ $conn->close();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="style_main.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #216dbe;
+            color: #fff;
+            width: 90%;
+            padding: 20px 20px;
+            text-align: center;
+            /* border-radius: 10px; */
+            /* position: absolute; */
+        }
+
+        /* Style the notification panel */
+        #notification-dropdown {
+            position: absolute;
+            top: 80px;
+            right: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            width: 200px;
+            max-height: 400px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 9999;
+            overflow-y: auto;
+            /* Enable vertical scrolling */
+        }
+
+        .icon-container {
+            position: absolute;
+            font-size: 30px;
+            top: 15px;
+            left: 0;
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .icon-container a {
+            color: #fff;
+            
+        }
+
+        .icon-container .icon-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 10px;
+        }
+
+        /* Style the bell icon */
+        .fas.fa-bell {
+            position: absolute;
+            font-size: 30px;
+            top: 15px;
+            right: 30px;
+            cursor: pointer;
+        }
+
+        /* Style for notification count */
+        #notification-count {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 10px;
+            z-index: 9999;
+        }
+
+        /* Style for the View All Notifications link */
+        .view-all-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px 0;
+            border-top: 1px solid #ccc;
+            text-decoration: none;
+            color: #007BFF;
+            cursor: pointer;
+        }
+
+        .view-all-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Style for notification items */
+        .notification-item {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1>PPWALA <br>Inventory Management System</h1>
+            <h1>PPWALA</h1>
+            <div class="icon-container">
+                <a href="view_query.php">
+                    <i class="fas fa-comment" id="query-icon"></i>
+                    <?php if ($queryCount > 0) : ?>
+                        <span class="icon-count"><?php echo $queryCount; ?></span>
+                    <?php endif; ?>
+                </a>
+            </div>
+            <div class="notification-icon-container">
+                <i class="fas fa-bell" id="notification-icon"></i>
+                <?php if ($notificationCount > 0) : ?>
+                    <span id="notification-count"><?php echo $notificationCount; ?></span>
+                <?php endif; ?>
+                </i>
+            </div>
         </header>
+
+        </header>
+
+        <div id="notification-dropdown">
+            <?php if (!empty($updates)) : ?>
+                <?php foreach ($updates as $update) : ?>
+                    <div class="notification-item">
+                        <div>
+                            <p><?php echo htmlspecialchars($update['update_text']); ?></p>
+                            <small><?php echo htmlspecialchars($update['timestamp']); ?></small>
+                        </div>
+                        <input type="checkbox" class="mark-as-read" data-id="<?php echo $update['id']; ?>">
+                    </div>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <p>No new notifications</p>
+            <?php endif; ?>
+            <a href="notifications.php" class="view-all-link">View All Notifications</a>
+        </div>
         <div class="content">
             <h3>Welcome <?php echo $name; ?></h3>
             <p>Welcome to your inventory management system. It help businesses organize and track their inventory
@@ -159,11 +330,71 @@ $conn->close();
                     </div>
                 </div>
             </div>
-    </div>
-    <footer>
-        <p>Created by Sumit and Sahil</p>
-        <p class="footer-text">© 2024 Inventory Management System. All rights reserved.</p>
-    </footer>
+        </div>
+        <footer>
+            <p>Created by <a href="submitupdates.html">Sumit</a> </p>
+            <p class="footer-text">© 2024 Inventory Management System. All rights reserved.</p>
+        </footer>
+
+
+        <script>
+            function loadNotificationIcon() {
+                const notificationIcon = document.getElementById("notification-icon");
+                const notificationDropdown = document.getElementById("notification-dropdown");
+
+                notificationIcon.addEventListener("click", (event) => {
+                    event.stopPropagation(); // Prevent the click event from bubbling up
+                    notificationDropdown.style.display = notificationDropdown.style.display === "block" ? "none" : "block";
+                });
+
+                document.addEventListener("click", (event) => {
+                    if (!notificationDropdown.contains(event.target) && event.target !== notificationIcon) {
+                        notificationDropdown.style.display = "none";
+                    }
+                });
+            }
+
+            function markAsRead() {
+                const markAsReadCheckboxes = document.querySelectorAll('.mark-as-read');
+
+                markAsReadCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', (event) => {
+                        if (event.target.checked) {
+                            const notificationId = event.target.getAttribute('data-id');
+
+                            fetch('mark_as_read.php', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        id: notificationId
+                                    })
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        event.target.closest('.notification-item').remove();
+                                        const notificationCount = document.getElementById('notification-count');
+                                        const count = parseInt(notificationCount.textContent) - 1;
+                                        notificationCount.textContent = count;
+                                        if (count === 0) {
+                                            notificationCount.style.display = 'none';
+                                        }
+                                    }
+                                })
+                                .catch(error => console.error('Error:', error));
+                        }
+                    });
+                });
+            }
+
+            // Load the notification icon and mark as read functionality when the DOM is loaded
+            document.addEventListener("DOMContentLoaded", () => {
+                loadNotificationIcon();
+                markAsRead();
+            });
+        </script>
 </body>
 
 </html>

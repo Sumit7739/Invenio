@@ -320,13 +320,13 @@ if (isset($_GET['id'])) {
             <label for="cupsToggle" class="toggle-label" onclick="toggleCups()" style=" font-weight: bold; font-size: 20px; cursor: pointer;">CUPS <span id="cupsToggleIcon">▼</span></label><br>
             <div id="cupsSection" class="container">
 
-                <!-- Repeat this pattern for Cups fields -->
-                <label for="cups50">50 ml Cups:</label>
+                 <label for="cups50">50 ml Cups:</label>
                 <input type="number" step="0.01" id="cups50" name="cups50" value="<?php echo $cups50; ?>">
                 <select id="cups50_unit" name="cups50_unit">
                     <option value="" selected disabled hidden>Select Unit</option>
-                    <option value="kg" <?php if ($cups50_unit == 'kg') echo 'selected'; ?>>kg</option>
-                    <option value="g" <?php if ($cups50_unit == 'g') echo 'selected'; ?>>g</option>
+                    <option value="Thousand" <?php if ($cups50_unit == 'Thousand') echo 'selected'; ?>>Thousand</option>
+                    <option value="Pieces" <?php if ($cups50_unit == 'Pieces') echo 'selected'; ?>>Pieces</option>
+                    <option value="Dozen" <?php if ($cups50_unit == 'Dozen') echo 'selected'; ?>>Dozen</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select><br><br>
 
@@ -334,8 +334,9 @@ if (isset($_GET['id'])) {
                 <input type="number" step="0.01" id="cups60" name="cups60" value="<?php echo $cups60; ?>">
                 <select id="cups60_unit" name="cups60_unit">
                     <option value="" selected disabled hidden>Select Unit</option>
-                    <option value="kg" <?php if ($cups60_unit == 'kg') echo 'selected'; ?>>kg</option>
-                    <option value="g" <?php if ($cups60_unit == 'g') echo 'selected'; ?>>g</option>
+                    <option value="Thousand" <?php if ($cups60_unit == 'Thousand') echo 'selected'; ?>>Thousand</option>
+                    <option value="Pieces" <?php if ($cups60_unit == 'Pieces') echo 'selected'; ?>>Pieces</option>
+                    <option value="Dozen" <?php if ($cups60_unit == 'Dozen') echo 'selected'; ?>>Dozen</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select><br><br>
 
@@ -343,8 +344,9 @@ if (isset($_GET['id'])) {
                 <input type="number" step="0.01" id="cups80" name="cups80" value="<?php echo $cups80; ?>">
                 <select id="cups80_unit" name="cups80_unit">
                     <option value="" selected disabled hidden>Select Unit</option>
-                    <option value="kg" <?php if ($cups80_unit == 'kg') echo 'selected'; ?>>kg</option>
-                    <option value="g" <?php if ($cups80_unit == 'g') echo 'selected'; ?>>g</option>
+                    <option value="Thousand" <?php if ($cups80_unit == 'Thousand') echo 'selected'; ?>>Thousand</option>
+                    <option value="Pieces" <?php if ($cups80_unit == 'Pieces') echo 'selected'; ?>>Pieces</option>
+                    <option value="Dozen" <?php if ($cups80_unit == 'Dozen') echo 'selected'; ?>>Dozen</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select><br><br>
 
@@ -352,8 +354,9 @@ if (isset($_GET['id'])) {
                 <input type="number" step="0.01" id="cups100" name="cups100" value="<?php echo $cups100; ?>">
                 <select id="cups100_unit" name="cups100_unit">
                     <option value="" selected disabled hidden>Select Unit</option>
-                    <option value="kg" <?php if ($cups100_unit == 'kg') echo 'selected'; ?>>kg</option>
-                    <option value="g" <?php if ($cups100_unit == 'g') echo 'selected'; ?>>g</option>
+                    <option value="Thousand" <?php if ($cups100_unit == 'Thousand') echo 'selected'; ?>>Thousand</option>
+                    <option value="Pieces" <?php if ($cups100_unit == 'Pieces') echo 'selected'; ?>>Pieces</option>
+                    <option value="Dozen" <?php if ($cups100_unit == 'Dozen') echo 'selected'; ?>>Dozen</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select><br><br>
 
@@ -361,8 +364,9 @@ if (isset($_GET['id'])) {
                 <input type="number" step="0.01" id="cups150" name="cups150" value="<?php echo $cups150; ?>">
                 <select id="cups150_unit" name="cups150_unit">
                     <option value="" selected disabled hidden>Select Unit</option>
-                    <option value="kg" <?php if ($cups150_unit == 'kg') echo 'selected'; ?>>kg</option>
-                    <option value="g" <?php if ($cups150_unit == 'g') echo 'selected'; ?>>g</option>
+                    <option value="Thousand" <?php if ($cups150_unit == 'Thousand') echo 'selected'; ?>>Thousand</option>
+                    <option value="Pieces" <?php if ($cups150_unit == 'Pieces') echo 'selected'; ?>>Pieces</option>
+                    <option value="Dozen" <?php if ($cups150_unit == 'Dozen') echo 'selected'; ?>>Dozen</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select><br><br>
 
@@ -370,8 +374,9 @@ if (isset($_GET['id'])) {
                 <input type="number" step="0.01" id="cups210" name="cups210" value="<?php echo $cups210; ?>">
                 <select id="cups210_unit" name="cups210_unit">
                     <option value="" selected disabled hidden>Select Unit</option>
-                    <option value="kg" <?php if ($cups210_unit == 'kg') echo 'selected'; ?>>kg</option>
-                    <option value="g" <?php if ($cups210_unit == 'g') echo 'selected'; ?>>g</option>
+                    <option value="Thousand" <?php if ($cups210_unit == 'Thousand') echo 'selected'; ?>>Thousand</option>
+                    <option value="Pieces" <?php if ($cups210_unit == 'Pieces') echo 'selected'; ?>>Pieces</option>
+                    <option value="Dozen" <?php if ($cups210_unit == 'Dozen') echo 'selected'; ?>>Dozen</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select><br><br>
 
@@ -379,11 +384,11 @@ if (isset($_GET['id'])) {
                 <input type="number" step="0.01" id="cups250" name="cups250" value="<?php echo $cups250; ?>">
                 <select id="cups250_unit" name="cups250_unit">
                     <option value="" selected disabled hidden>Select Unit</option>
-                    <option value="kg" <?php if ($cups250_unit == 'kg') echo 'selected'; ?>>kg</option>
-                    <option value="g" <?php if ($cups250_unit == 'g') echo 'selected'; ?>>g</option>
+                    <option value="Thousand" <?php if ($cups250_unit == 'Thousand') echo 'selected'; ?>>Thousand</option>
+                    <option value="Pieces" <?php if ($cups250_unit == 'Pieces') echo 'selected'; ?>>Pieces</option>
+                    <option value="Dozen" <?php if ($cups250_unit == 'Dozen') echo 'selected'; ?>>Dozen</option>
                     <option value="default" style="display:none;">Default (not inserted)</option>
                 </select><br><br>
-
             </div>
             <hr>
 

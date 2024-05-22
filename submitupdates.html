@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style_main.css">
+    <style>
+        /* Style the input field */
+        #updates {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: vertical;
+            /* Allow users to resize the textarea vertically */
+        }
+
+        /* Style the submit button */
+        input[type="submit"] {
+            background-color: #4CAF50;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Style the submit button on hover */
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+            /* Darker green */
+        }
+
+        button {
+            background-color: #4CAF50;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>PPWALA <br>Inventory Management System</h1>
+        </header>
+        <div class="content">
+            <h2>Updates</h2>
+            <p>Enter Updates or Notices.</p>
+            <form action="submit_updates.php" method="post">
+                <label for="updates">Updates:</label>
+                <input type="text" id="updates" name="updates" required>
+                <br>
+                <br>
+                <input type="submit" value="Submit Updates">
+            </form>
+            <a href="manage_system.php"><button>Back</button></a>
+        </div>
+        <footer>
+            <p>Created by Sumit and Sahil</p>
+            <p class="footer-text">© 2024 Inventory Management System. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+
+</html>

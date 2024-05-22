@@ -1,56 +1,101 @@
-<?php
-// Check if the form was submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+/* .query-cards-container {
+            max-width: 100%;
+            margin: 50px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0 20px;
+        } */
 
-    // Hash the password
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        /* .query-card {
+            width: calc(100% - 10px);
+            margin-bottom: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
 
-    include('config.php');
+        .query-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
 
+        .query-card-content {
+            padding: 20px;
+            
+        }
 
-    // Prepare and execute SQL query to insert data into the database
-    $sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $name, $email, $hashed_password);
+        .query-card p {
+            margin: 10px 0;
+        }
 
-    if ($stmt->execute()) {
-        echo "New record inserted successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
 
-    // Close statement and database connection
-    $stmt->close();
-    $conn->close();
-}
-?>
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
 
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
 
-<!DOCTYPE html>
-<html lang="en">
+        button {
+            background-color: transparent;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            padding: 5px 10px;
+            color: #000;
+            background-color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insert Data</title>
-</head>
+        button:hover {
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
 
-<body>
-    <form method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+        .mark-resolved-btn,
+        .delete-btn {
+            margin: 5px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+        .mark-resolved-btn {
+            background-color: #4caf50;
+            color: white;
+        }
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required maxlength="8"><br><br>
-
-        <input type="submit" value="Submit">
-    </form>
-</body>
-
-</html>
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+        } */
