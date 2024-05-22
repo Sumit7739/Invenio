@@ -176,7 +176,15 @@ $conn->close();
                             <p>Quickly enter new sales records.</p>
                         </div>
                         <div class="small-box">
+                            <a href="more_sales_report.php">2nd Sales Report</a>
+                            <p>Quickly enter new sales records.</p>
+                        </div>
+                        <div class="small-box">
                             <a href="inventory_report.php">Inventory Report</a>
+                            <p>Access and view your sales details.</p>
+                        </div>
+                        <div class="small-box">
+                            <a href="more_inventory_report.php">2nd Inventory Report</a>
                             <p>Access and view your sales details.</p>
                         </div>
                     </div>

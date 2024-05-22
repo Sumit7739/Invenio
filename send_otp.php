@@ -52,8 +52,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->addAddress($userEmail); // Recipient's email
 
             $mail->isHTML(true);
-            $mail->Subject = 'OTP Verification';
-            $mail->Body = 'Your OTP for Password Resetting is: ' . $otp;
+            $mail->isHTML(true);
+            $mail->Subject = 'Reset Your PPWALA Account Password'; // Personalized subject line
+
+            $body = "
+<html>
+<head>
+  <title>Reset Your PPWALA Account Password</title>
+</head>
+<body>
+  <p>Hi there,</p>
+  <p>We received a request to reset your password for your PPWALA account. To complete the reset process, please use the following One-Time Password (OTP):</p>
+  <p style='font-weight: bold;'>" . $otp . "</p>
+  <p>This code is valid for 5 minutes and will allow you to create a new password for your account.</p>
+  <p>If you didn't request a password reset, please ignore this email. Your account remains secure.</p>
+  <p>Thanks,<br />The PPWALA Team</p>
+</body>
+</html>";
+
+            $mail->Body = $body;
+
 
             if ($mail->send()) {
                 // OTP sent successfully

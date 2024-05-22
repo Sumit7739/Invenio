@@ -1,0 +1,85 @@
+     /* sales_report.css */
+
+     body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    h1 {
+        color: #333;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .chart-container {
+        margin-top: 30px;
+        text-align: center;
+        /* Center the chart */
+    }
+
+    .chart-title {
+        font-size: 1.8em;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .chart-description {
+        font-size: 1.2em;
+        color: #777;
+        margin-top: 20px;
+    }
+
+    canvas {
+        display: block;
+        margin: 0 auto;
+        width: 100% !important;
+        /* Ensure canvas takes full width of its container */
+        height: auto !important;
+        /* Adjust height to maintain aspect ratio */
+    }
+
+    .toggle-button {
+        display: inline-block;
+        margin-bottom: 20px;
+        text-decoration: none;
+        color: #007bff;
+        font-size: 1.2em;
+    }
+
+    .toggle-button:hover {
+        color: #0056b3;
+    }
+
+    .back-icon {
+        margin-right: 8px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .container {
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        .chart-title {
+            font-size: 1.5em;
+        }
+
+        .chart-description {
+            font-size: 1em;
+        }
+    }

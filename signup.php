@@ -78,10 +78,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "UPDATE users SET otp = '$otp' WHERE email = '$recipientEmail'";
 
             if ($conn->query($sql) === TRUE) {
-                // Send email
                 $mail->isHTML(true);
-                $mail->Subject = 'OTP Verification';
-                $mail->Body = 'Your OTP for account verification is: ' . $otp;
+                $mail->Subject = 'Verify Your PPWALA Account'; // Personalized subject line
+
+                $body = "
+                <html>
+                <head>
+                  <title>Verify Your PPWALA Account</title>
+                </head>
+                <body>
+                  <p>Hi there,</p>
+                  <p>Thank you for creating an account with PPWALA! To complete your registration and ensure the security of your account, please verify your email address using the following One-Time Password (OTP):</p>
+                  <p style='font-weight: bold;'>" . $otp . "</p>
+                  <p>This code is valid for 5 minutes. Please enter it in the designated field on our website to complete your registration.</p>
+                  <p>If you didn't request this verification, please ignore this email. Your account remains secure.</p>
+                  <p>Thanks,<br />The PPWALA Team</p>
+                </body>
+                </html>";
+
+                $mail->Body = $body;
+
 
                 if ($mail->send()) {
                     // Redirect to OTP verification page
@@ -166,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </section>
 
-   <script src="signup.js"></script>
+    <script src="signup.js"></script>
 </body>
 
 </html>
