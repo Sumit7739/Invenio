@@ -41,16 +41,6 @@
             margin: 15px 0;
         }
 
-
-        .query-cards-container {
-            /* max-width: 100%; */
-            /* margin: 50px 0; */
-
-            /* flex-wrap: wrap; */
-            /* justify-content: space-between; */
-            /* padding: 0 20px; */
-        }
-
         .query-card {
             width: calc(100% - 10px);
             margin-bottom: 20px;
