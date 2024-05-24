@@ -198,7 +198,15 @@ $conn->close();
                         <p>Quickly view new sales records.</p>
                     </div>
                     <div class="small-box">
+                        <a href="more_sales_table.php">2nd Sales Table</a>
+                        <p>Quickly view new sales records.</p>
+                    </div>
+                    <div class="small-box">
                         <a href="inventory_table.php">Inventory Table</a>
+                        <p>Access and view your Inventory details.</p>
+                    </div>
+                     <div class="small-box">
+                        <a href="more_inventory_table.php">Inventory Table</a>
                         <p>Access and view your Inventory details.</p>
                     </div>
                 </div>

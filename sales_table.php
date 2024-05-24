@@ -248,31 +248,31 @@
             <!-- CUPS rows -->
             <tr class="cups-row">
                 <td>CUPS50</td>
-                <td><?php echo (@$total_cups50 >= 1000 ? (@$total_cups50 / 1000) . " kg" : @$total_cups50 . " g"); ?></td>
+                <td><?php echo (@$total_cups50 >= 1000 ? (@$total_cups50 / 1000) . " k" : @$total_cups50 . " g"); ?></td>
             </tr>
             <tr class="cups-row">
                 <td>CUPS60</td>
-                <td><?php echo (@$total_cups60 >= 1000 ? (@$total_cups60 / 1000) . " kg" : @$total_cups60 . " g"); ?></td>
+                <td><?php echo (@$total_cups60 >= 1000 ? (@$total_cups60 / 1000) . " k" : @$total_cups60 . " g"); ?></td>
             </tr>
             <tr class="cups-row">
                 <td>CUPS80</td>
-                <td><?php echo (@$total_cups80 >= 1000 ? (@$total_cups80 / 1000) . " kg" : @$total_cups80 . " g"); ?></td>
+                <td><?php echo (@$total_cups80 >= 1000 ? (@$total_cups80 / 1000) . " k" : @$total_cups80 . " g"); ?></td>
             </tr>
             <tr class="cups-row">
                 <td>CUPS100</td>
-                <td><?php echo (@$total_cups100 >= 1000 ? (@$total_cups100 / 1000) . " kg" : @$total_cups100 . " g"); ?></td>
+                <td><?php echo (@$total_cups100 >= 1000 ? (@$total_cups100 / 1000) . " k" : @$total_cups100 . " g"); ?></td>
             </tr>
             <tr class="cups-row">
                 <td>CUPS150</td>
-                <td><?php echo (@$total_cups150 >= 1000 ? (@$total_cups150 / 1000) . " kg" : @$total_cups150 . " g"); ?></td>
+                <td><?php echo (@$total_cups150 >= 1000 ? (@$total_cups150 / 1000) . " k" : @$total_cups150 . " g"); ?></td>
             </tr>
             <tr class="cups-row">
                 <td>CUPS210</td>
-                <td><?php echo (@$total_cups210 >= 1000 ? (@$total_cups210 / 1000) . " kg" : @$total_cups210 . " g"); ?></td>
+                <td><?php echo (@$total_cups210 >= 1000 ? (@$total_cups210 / 1000) . " k" : @$total_cups210 . " g"); ?></td>
             </tr>
             <tr class="cups-row">
                 <td>CUPS250</td>
-                <td><?php echo (@$total_cups250 >= 1000 ? (@$total_cups250 / 1000) . " kg" : @$total_cups250 . " g"); ?></td>
+                <td><?php echo (@$total_cups250 >= 1000 ? (@$total_cups250 / 1000) . " k" : @$total_cups250 . " g"); ?></td>
             </tr>
             <!-- BD rows -->
             <tr class="bd-row">

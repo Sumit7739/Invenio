@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($conn->query($sql) === TRUE) {
                 $mail->isHTML(true);
                 $mail->Subject = 'Verify Your PPWALA Account'; // Personalized subject line
-
+                
                 $body = "
                 <html>
                 <head>
