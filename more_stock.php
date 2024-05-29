@@ -13,9 +13,8 @@ try {
 
     // Initialize arrays to store summed data and units
     $attributes = array(
-        "py8"=> 'kg',      "py9" => 'kg' 
-        // 'bl5' => 'kg', 'bl6' => 'kg', 'bl7' => 'kg', 'bl9' => 'kg',
-        //use this as syntax
+        "py6"=> 'kg', "py8"=> 'kg', "py9" => 'kg', "py11"=> 'kg', "3x4yzl"=> 'kg',
+        "4x5yzl"=> 'kg', "3x4wzl"=> 'kg', "4x5wzl"=> 'kg'
     );
 
     // Initialize arrays to store summed data
