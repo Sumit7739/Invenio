@@ -40,6 +40,17 @@ if (!isset($_SESSION['id'])) {
             <label for="blackLooseToggle" onclick="toggleBlackLoose()" style="color:#ff7300; font-weight: bold; font-size: 20px; cursor: pointer;">Payal LD <span id="toggleIcon">▼</span></label><br>
             <div id="blackLooseSection" class="container">
 
+                <label for="py6">6 Inch:</label>
+                <input type="number" step="0.01" id="py6" name="py6">
+                <select id="payal6_unit" name="payal6_unit" required class="unit">
+                    <option value="NULL">Select Unit</option>
+                    <option value="kg">kg</option>
+                    <option value="g">g</option>
+                    <option value="default" style="display:none;">Default (not inserted)</option>
+                </select>
+                <input type="hidden" name="payal6_unit_default" value="NULL">
+                <br>
+
                 <label for="py8">8 Inch:</label>
                 <input type="number" step="0.01" id="py8" name="py8">
                 <select id="payal8_unit" name="payal8_unit" required class="unit">
@@ -61,9 +72,66 @@ if (!isset($_SESSION['id'])) {
                 </select>
                 <input type="hidden" name="payal9_unit_default" value="NULL">
                 <br>
-</div>
+                <label for="py11">11 Inch:</label>
+                <input type="number" step="0.01" id="py11" name="py11">
+                <select id="payal11_unit" name="payal11_unit" required class="unit">
+                    <option value="NULL">Select Unit</option>
+                    <option value="kg">kg</option>
+                    <option value="g">g</option>
+                    <option value="default" style="display:none;">Default (not inserted)</option>
+                </select>
+                <input type="hidden" name="payal11_unit_default" value="NULL">
+                <br>
+            </div>
+            <button type="button" class="toggle-btn primary-btn" onclick="toggleAllSections()"><i class="fas fa-toggle-on"></i></button>
+            <label for="blackLooseToggle" onclick="toggleBlackLoose()" style="color:#ff7300; font-weight: bold; font-size: 20px; cursor: pointer;">Zip Lock <span id="toggleIcon">▼</span></label><br>
+            <div id="blackLooseSection" class="container">
 
-                <input type="submit" value="Submit">
+                <label for="3x4yzl">3x4 YZL:</label>
+                <input type="number" step="0.01" id="3x4yzl" name="3x4yzl">
+                <select id="3x4yzl_unit" name="3x4yzl_unit" required class="unit">
+                    <option value="NULL">Select Unit</option>
+                    <option value="kg">kg</option>
+                    <option value="g">g</option>
+                    <option value="default" style="display:none;">Default (not inserted)</option>
+                </select>
+                <input type="hidden" name="3x4yzl_unit_default" value="NULL">
+                <br>
+
+                <label for="4x5yzl">4x5 YZL:</label>
+                <input type="number" step="0.01" id="4x5yzl" name="4x5yzl">
+                <select id="4x5yzl_unit" name="4x5yzl_unit" required class="unit">
+                    <option value="NULL">Select Unit</option>
+                    <option value="kg">kg</option>
+                    <option value="g">g</option>
+                    <option value="default" style="display:none;">Default (not inserted)</option>
+                </select>
+                <input type="hidden" name="4x5yzl_unit_default" value="NULL">
+                <br>
+
+                <label for="3x4wzl">3x4 WZL:</label>
+                <input type="number" step="0.01" id="3x4wzl" name="3x4wzl">
+                <select id="3x4wzl_unit" name="3x4wzl_unit" required class="unit">
+                    <option value="NULL">Select Unit</option>
+                    <option value="kg">kg</option>
+                    <option value="g">g</option>
+                    <option value="default" style="display:none;">Default (not inserted)</option>
+                </select>
+                <input type="hidden" name="3x4wzl_unit_default" value="NULL">
+                <br>
+
+                <label for="4x5wzl">4x5 WZL:</label>
+                <input type="number" step="0.01" id="4x5wzl" name="4x5wzl">
+                <select id="4x5wzl_unit" name="4x5wzl_unit" required class="unit">
+                    <option value="NULL">Select Unit</option>
+                    <option value="kg">kg</option>
+                    <option value="g">g</option>
+                    <option value="default" style="display:none;">Default (not inserted)</option>
+                </select>
+                <input type="hidden" name="4x5wzl_unit_default" value="NULL">
+                <br>
+            </div>
+            <input type="submit" value="Submit">
         </form>
         <a href="moresales.php">Go To Sales</a>
     </div>

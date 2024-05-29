@@ -31,7 +31,7 @@
 
 
         // SQL query to fetch data in descending order based on the date
-        $sql = "SELECT id, date, py8, py9
+        $sql = "SELECT id, date, py6, py8, py9, py11, 3x4yzl, 4x5yzl, 3x4wzl, 4x5wzl
         FROM moreinventory_item 
         ORDER BY date DESC";
         $result = $conn->query($sql);
@@ -52,14 +52,14 @@
 
                 // Count the number of items with non-null or non-zero values
                 $itemCount = 0;
-                $columns = array("py8", "py9");
+                $columns = array("py6", "py8", "py9", "py11", "3x4yzl", "4x5yzl", "3x4wzl", "4x5wzl");
                 foreach ($columns as $col) {
                     if (!empty($row[$col]) && $row[$col] != "0") {
                         $itemCount++;
                     }
                 }
 
-                echo "<h3 class='hidden'>Items - " . $itemCount . " of 2</h3>";
+                echo "<h3 class='hidden'>Items - " . $itemCount . " of 8</h3>";
                 echo "</div>";
             }
         } else {

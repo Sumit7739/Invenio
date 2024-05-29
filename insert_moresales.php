@@ -1,71 +1,84 @@
 <?php
-// Check if the form is submitted
-
+// Enable error reporting
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (isset($_POST['payal8_unit'])) {
-        $py8Unit = $_POST['payal8_unit'];
-        // Check if the selected unit is "none" and use the value from the hidden field if it is
-        if ($py8Unit === "NULL") {
-            $py8Unit = $_POST['payal8_unit_default']; // Use the value from the hidden field (NULL)
-        }
+    // Fetch and set default units if necessary
+    $units = ['payal6_unit', 'payal8_unit', 'payal9_unit', 'payal11_unit', '3x4yzl_unit', '4x5yzl_unit', '3x4wzl_unit', '4x5wzl_unit'];
+    foreach ($units as $unit) {
+        ${$unit} = isset($_POST[$unit]) && $_POST[$unit] !== "NULL" ? $_POST[$unit] : (isset($_POST[$unit . '_default']) ? $_POST[$unit . '_default'] : null);
     }
 
-    if (isset($_POST['payal9_unit'])) {
-        $py9Unit = $_POST['payal9_unit'];
-        if ($py9Unit === "NULL") {
-            $py9Unit = $_POST['payal9_unit_default'];
-        }
-    }
-
-
-
-    // Define database connection credentials
-    include ('config.php');
+    // Include database configuration
+    include('config.php');
 
     try {
-        // Prepare and bind SQL statement for inventory_items table
-        $stmt_items = $conn->prepare("INSERT INTO moresales_item (date, py8, py9)
-        VALUES (?, ?, ?)");
-        $stmt_items->bind_param("sdd", $date, $py8, $py9);
+        // Prepare and bind SQL statement for moresales_item table
+        $stmt_items = $conn->prepare("INSERT INTO moresales_item (date, py6, py8, py9, py11, 3x4yzl, 4x5yzl, 3x4wzl, 4x5wzl)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        
+        // Check if statement preparation was successful
+        if (!$stmt_items) {
+            throw new Exception("Prepare failed for moresales_item: " . $conn->error);
+        }
 
-        // Set parameters and execute SQL statement for inventory_items table
+        // Bind parameters
+        $stmt_items->bind_param("sdddddddd", $date, $py6, $py8, $py9, $py11, $zip3x4yzl, $zip4x5yzl, $zip3x4wzl, $zip4x5wzl);
+
+        // Set parameters and execute SQL statement for moresales_item table
         $date = $_POST["date"];
+        $py6 = $_POST["py6"];
         $py8 = $_POST["py8"];
         $py9 = $_POST["py9"];
-       
-        $stmt_items->execute();
+        $py11 = $_POST["py11"];
+        $zip3x4yzl = $_POST["3x4yzl"];
+        $zip4x5yzl = $_POST["4x5yzl"];
+        $zip3x4wzl = $_POST["3x4wzl"];
+        $zip4x5wzl = $_POST["4x5wzl"];
+        
+        if (!$stmt_items->execute()) {
+            throw new Exception("Execute failed for moresales_item: " . $stmt_items->error);
+        }
 
-        // Get the last inserted item ID for use in inventory_units table
+        // Get the last inserted item ID for use in moresales_units table
         $item_id = $conn->insert_id;
 
-
-        // Prepare and bind SQL statement for inventory_units table
-        $stmt_units = $conn->prepare("INSERT INTO moresales_unit (item_id,  payal8_unit, payal9_unit)
-        VALUES (?, ?, ?)");
-        $stmt_units->bind_param("iss", $item_id, $py8_unit, $py9_unit);
-
-
-
-        // Set parameters and execute SQL statement for inventory_units table
-        $py8_unit = $_POST["payal8_unit"];
-        $py9_unit = $_POST["payal9_unit"];
+        // Prepare and bind SQL statement for moresales_units table
+        $stmt_units = $conn->prepare("INSERT INTO moresales_unit (item_id, payal6_unit, payal8_unit, payal9_unit, payal11_unit, 3x4yzl_unit, 4x5yzl_unit, 3x4wzl_unit, 4x5wzl_unit)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         
-        $stmt_units->execute();
+        // Check if statement preparation was successful
+        if (!$stmt_units) {
+            throw new Exception("Prepare failed for moresales_unit: " . $conn->error);
+        }
 
-       $insertedItemId = $conn->insert_id;
+        // Bind parameters
+        $stmt_units->bind_param("issssssss", $item_id, $payal6_unit, $payal8_unit, $payal9_unit, $payal11_unit, $zip3x4yzl_unit, $zip4x5yzl_unit, $zip3x4wzl_unit, $zip4x5wzl_unit);
+
+        // Set parameters and execute SQL statement for moresales_units table
+        $payal6_unit = $_POST["payal6_unit"];
+        $payal8_unit = $_POST["payal8_unit"];
+        $payal9_unit = $_POST["payal9_unit"];
+        $payal11_unit = $_POST["payal11_unit"];
+        $zip3x4yzl_unit = $_POST["3x4yzl_unit"];
+        $zip4x5yzl_unit = $_POST["4x5yzl_unit"];
+        $zip3x4wzl_unit = $_POST["3x4wzl_unit"];
+        $zip4x5wzl_unit = $_POST["4x5wzl_unit"];
+
+        if (!$stmt_units->execute()) {
+            throw new Exception("Execute failed for moresales_unit: " . $stmt_units->error);
+        }
+
+        // Redirect to success page
         header("Location: success.html");
         exit;
-        
-        // $stmt_items->close();
-        // $stmt_units->close();
-        // $conn->close();
+
     } catch (Exception $e) {
         // Handle exceptions here, such as logging the error or displaying a message to the user
         echo "Error: " . $e->getMessage();
     }
 }
+?>
