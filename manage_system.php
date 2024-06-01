@@ -215,12 +215,6 @@ $conn->close();
                     <h3>Extra Tools</h3>
                     <p>Access additional features and tools to enhance your inventory management experience</p>
                     <div class="small-box">
-                        <a href="PPWALA.apk" class="logout-bt" download>
-                            <i class="fas fa-file-download"></i> Download APP
-                        </a>
-                        <p>Download the APP.</p>
-                    </div>
-                    <div class="small-box">
                         <a href="users.php" class="logout-bt">
                             <i class="fas fa-user"></i> See Users
                         </a>
