@@ -4,6 +4,8 @@ This README.md file showcases a web-based inventory management system designed t
 
 To visit click on the link -[PPWALA](https://ppwala.000webhostapp.com)
 
+To Download the app click on the link [PPWALA_APK](https://sumit7739.github.io/Invenio/app.html)
+
 ![Home page](image/home.png "width=400px height=300px")
 ![Login page](image/login.png "width=400px height=300px")
 ![Welcome page](image/welcome.png "width=400px height=300px")
