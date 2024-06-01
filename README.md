@@ -65,7 +65,7 @@ This web-based inventory management system is distributed under the terms of the
 
 ---
 
-## Quick Links to Images
+## Images
 Click on the images to view in full size.
 
 <p align="center">
