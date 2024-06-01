@@ -205,7 +205,7 @@ $conn->close();
                         <a href="inventory_table.php">Inventory Table</a>
                         <p>Access and view your Inventory details.</p>
                     </div>
-                     <div class="small-box">
+                    <div class="small-box">
                         <a href="more_inventory_table.php">Inventory Table</a>
                         <p>Access and view your Inventory details.</p>
                     </div>
@@ -214,6 +214,12 @@ $conn->close();
                     <i class="fas fa-box"></i>
                     <h3>Extra Tools</h3>
                     <p>Access additional features and tools to enhance your inventory management experience</p>
+                    <div class="small-box">
+                        <a href="PPWALA.apk" class="logout-bt" download>
+                            <i class="fas fa-file-download"></i> Download APP
+                        </a>
+                        <p>Download the APP.</p>
+                    </div>
                     <div class="small-box">
                         <a href="users.php" class="logout-bt">
                             <i class="fas fa-user"></i> See Users
@@ -241,7 +247,7 @@ $conn->close();
         </footer>
 
 
-       <script src="manage_system.js"></script>
+        <script src="manage_system.js"></script>
 </body>
 
 </html>
