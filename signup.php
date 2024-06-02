@@ -11,7 +11,6 @@ use PHPMailer\PHPMailer\SMTP;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    // $phoneNumber = $_POST['phonenumber'];
     $password = $_POST['password'];
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -29,11 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // User already exists
         $error = "User already exists";
     } else {
-
-        // Insert the new user into the database
-        $sql = "INSERT INTO users (name, email, password, tokenn) VALUES (?, ?, ?, ?)";
+        // Insert the new user into the database with role and access
+        $role = 'user';
+        $access = 'r';
+        $sql = "INSERT INTO users (name, email, password, tokenn, role, access) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssss", $name, $email, $hashed_password, $token);
+        $stmt->bind_param("ssssss", $name, $email, $hashed_password, $token, $role, $access);
         $stmt->execute();
 
         // Check if the user was successfully inserted
@@ -75,12 +75,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->addAddress($recipientEmail); // Recipient email
 
             // Save the OTP in the database
-            $sql = "UPDATE users SET otp = '$otp' WHERE email = '$recipientEmail'";
+            $sql = "UPDATE users SET otp = ? WHERE email = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ss", $otp, $recipientEmail);
 
-            if ($conn->query($sql) === TRUE) {
+            if ($stmt->execute()) {
                 $mail->isHTML(true);
                 $mail->Subject = 'Verify Your PPWALA Account'; // Personalized subject line
-                
+
                 $body = "
                 <html>
                 <head>
@@ -98,7 +100,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $mail->Body = $body;
 
-
                 if ($mail->send()) {
                     // Redirect to OTP verification page
                     header('Location: otp_verification.php?email=' . $recipientEmail);
@@ -107,10 +108,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $error = 'Error sending email: ' . $mail->ErrorInfo;
                 }
             } else {
-                $error = 'Error updating OTP: ' . $conn->error;
+                $error = 'Error updating OTP: ' . $stmt->error;
             }
 
-            $conn->close();
+            $stmt->close();
         } else {
             $error = "Failed to create user";
         }

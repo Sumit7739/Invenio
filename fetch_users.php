@@ -1,7 +1,7 @@
 <?php
 include('config.php');
 
-$sql = "SELECT id, name, email FROM users";
+$sql = "SELECT id, name, email, role FROM users";
 $result = $conn->query($sql);
 
 $users = [];

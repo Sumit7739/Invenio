@@ -1,0 +1,81 @@
+   /* Import Google Material Design styles */
+   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+   /* Set global font family */
+   body {
+       font-family: 'Roboto', sans-serif;
+       margin: 0;
+       padding: 0;
+       background-color: #f5f5f5;
+   }
+
+   /* Custom styles for Material Design */
+   .container {
+       max-width: 1200px;
+       margin: 40px auto;
+       padding: 20px;
+       background-color: #fff;
+       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+       border-radius: 5px;
+   }
+
+   .back-icon {
+       position: absolute;
+       right: 0;
+       margin-right: 40px;
+       margin-top: 20px;
+       color: #333;
+       font-size: 30px;
+       cursor: pointer;
+   }
+
+   .user-card {
+       margin-bottom: 20px;
+       padding: 15px;
+       border-radius: 5px;
+       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+       background-color: #fff;
+   }
+
+   .user-info {
+       margin-bottom: 10px;
+   }
+
+   .user-info h3 {
+       margin: 0;
+       font-size: 18px;
+       font-weight: 500;
+       margin-bottom: 10px;
+   }
+
+   .user-info p {
+       margin: 0;
+       color: #000;
+       margin-bottom: 10px;
+   }
+
+   .action-buttons {
+       display: flex;
+       justify-content: flex-end;
+       align-items: center;
+       margin-top: 10px;
+       /* Added margin top for better spacing */
+   }
+
+   .action-buttons select {
+       /* color: white; */
+       border: none;
+       border-radius: 5px;
+       padding: 2px 4px;
+       cursor: pointer;
+       font-size: 16px;
+       transition: background-color 0.3s;
+       margin-left: 10px;
+   }
+
+   /* Responsive styles */
+   @media (max-width: 768px) {
+       .back-icon {
+           font-size: 34px;
+       }
+   }

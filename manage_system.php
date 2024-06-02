@@ -13,12 +13,13 @@ include('config.php');
 $userID = $_SESSION['id'];
 
 // Fetch user's name
-$sql = "SELECT name FROM users WHERE id = '$userID'";
+$sql = "SELECT name, role FROM users WHERE id = '$userID'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $name = $row['name'];
+    $role = $row['role'];
 } else {
     $name = "User";
 }
@@ -104,6 +105,7 @@ $conn->close();
         </div>
         <div class="content">
             <h3>Welcome <?php echo $name; ?></h3>
+            <h4>Role - <?php echo $role; ?> </h4>
             <p>Welcome to your inventory management system. It help businesses organize and track their inventory
                 efficiently.</p>
             <div class="features">
