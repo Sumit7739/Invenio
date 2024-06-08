@@ -1,189 +1,104 @@
-/* General Styles */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-}
-
-a.toggle-buttons {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    color: #4285f4;
-    font-size: 24px;
-    text-decoration: none;
-}
-
-/* .error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 10px;
-} */
-
-.popup-container {
-    display: none;
-    position: fixed;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(226, 51, 51, 0.928);
-    /* Green color */
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    padding: 20px;
-    z-index: 1000;
-    max-width: 400px;
-    width: 80%;
-    text-align: center;
-}
-
-.popup-content {
-    margin-bottom: 10px;
-}
-
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    color: #333;
-    font-size: 24px;
-    transition: color 0.3s ease;
-}
-
-.close-btn:hover {
-    color: #ff0000;
-}
-
-.popup-message {
-    font-size: 18px;
-    color: #fff;
-    /* White text color */
-}
-
-.section-container {
-    position: absolute;
-    top: 10%;
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
 }
 
-.user-list {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 20px;
-}
-
-.user-container {
-    background: #fff;
+.login-container {
+    background-color: #fff;
+    padding: 2em;
     border-radius: 8px;
-    padding: 20px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
 }
 
-.user-container:hover {
-    background: #f1f1f1;
-    transform: translateY(-5px);
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 1em;
+    color: #333;
 }
 
-.user-info {
-    margin-bottom: 10px;
+.input-box {
+    margin-bottom: 1em;
 }
 
-.user-info p {
-    margin: 5px 0;
-}
-
-.password-form {
-    display: none;
-}
-
-.user-container.expanded .password-form {
+.input-box label {
     display: block;
-    margin-top: 10px;
+    margin-bottom: 0.5em;
+    color: #333;
 }
 
-button {
-    background-color: #4285f4;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #357ae8;
-}
-
-.fas.fa-home {
-    position: absolute;
-    margin-bottom: 50px;
-    color: #000;
-}
-
-.fas.fa-home:hover {
-    color: #4285f4;
-}
-
-.fas.fa-home:active {
-    color: #357ae8;
-}
-
-input[type="password"] {
-    padding: 10px;
+.input-box input {
+    width: 90%;
+    padding: 0.75em;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.password-form {
-    display: none;
-}
-
-input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
-    margin-right: 5px;
+    font-size: 1em;
 }
 
 .checkbox-container {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 1em;
+}
+
+.checkbox-container input {
+    margin-right: 0.5em;
 }
 
 .checkbox-container label {
-    font-size: 14px;
-    color: #555;
+    color: #333;
 }
 
-.checkbox-container input[type="checkbox"] {
-    margin-right: 5px;
+.login-container button {
+    width: 100%;
+    padding: 0.75em;
+    border: none;
+    background-color: #007BFF;
+    color: #fff;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.checkbox-container input[type="checkbox"]:checked {
-    background-color: #4285f4;
-    border-color: #4285f4;
+.login-container button:hover {
+    background-color: #0056b3;
 }
 
-/* Media Queries */
-/* @media screen and (max-width: 768px) {
-            .user-list {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
-        } */
+.reset{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-bottom: 1em; */
+    margin-top: -50px;
+    margin-left: 60%;
+}
+.reset a{
+    color: #007BFF;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.reset a:hover{
+    text-decoration: underline;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+/* Style for the home icon */
+.home-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #333;
+    font-size: 1.5em;
+}

@@ -6,13 +6,13 @@ include('config.php');
 $error = ''; // Initialize the error variable
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $userId = $_POST['user_id'];
+    $email = $_POST['email'];
     $enteredPassword = $_POST['password'];
     $rememberMe = isset($_POST['remember']);
 
-    $sql = "SELECT * FROM users WHERE id = ?";
+    $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $userId);
+    $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $error = "Invalid password"; // Set the error message
         }
     } else {
-        $error = "Invalid user"; // Set the error message
+        $error = "Invalid email"; // Set the error message
     }
 
     $stmt->close();
@@ -74,84 +74,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <a href="index.html" class="toggle-buttons">
-        <i id="homeIcon" class="fas fa-home"></i>
+    <a href="index.html" class="home-icon">
+        <i class="fas fa-home"></i>
     </a>
-    <div class="section-container">
-        <div class="user-list" id="users-list">
-            <!-- User containers will be dynamically added here -->
-        </div>
+    <div class="login-container">
+        <h2>Login</h2>
+        <?php if ($error !== '') : ?>
+            <div class="error-message"><?php echo $error; ?></div>
+        <?php endif; ?>
+        <form method="POST" action="login.php">
+            <div class="input-box">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-box">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Remember Me</label>
+            </div>
+            <br>
+            <div class="reset">
+                <a href="send_otp.php">Forgot Password</a>
+            </div>
+            <br>
+            <br>
+            <button type="submit" name="submit">Login</button>
+        </form>
     </div>
-    <div class="popup-container" id="errorPopup">
-        <div class="popup-content">
-            <span class="close-btn" onclick="closePopup()">&times;</span>
-            <p id="errorMessage"><?php echo $error; ?></p> <!-- Display error message here -->
-        </div>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('fetch_users.php')
-                .then(response => response.json())
-                .then(users => {
-                    const usersList = document.getElementById('users-list');
-                    users.forEach(user => {
-                        const userContainer = document.createElement('div');
-                        userContainer.classList.add('user-container');
-                        userContainer.innerHTML = `
-                            <div class="user-info">
-                                <h3><strong>Name:</strong> ${user.name}</h3>
-                                <h3><strong>Role:</strong> ${user.role}</h3>
-                            </div>
-                            <br>
-                            <form class="password-form" method="POST" action="login.php">
-                                <input type="hidden" name="user_id" value="${user.id}">
-                                <div class="input-box">
-                                    <input type="password" name="password" placeholder="Password"  required maxlength="8">
-                                </div>
-                                <br>
-                                <div class="checkbox-container">
-                                    <input type="checkbox" name="remember" id="remember_${user.id}">
-                                    <label for="remember_${user.id}">Remember Me</label>
-                                </div>
-                                <br>
-                                <button type="submit" name="submit">Login</button>
-                            </form>
-                        `;
-                        userContainer.addEventListener('click', function() {
-                            document.querySelectorAll('.user-container').forEach(container => {
-                                container.classList.remove('expanded');
-                            });
-                            userContainer.classList.add('expanded');
-                        });
-                        usersList.appendChild(userContainer);
-                    });
-                })
-                .catch(error => console.error('Error fetching users:', error));
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Function to show the error popup
-            function showErrorPopup() {
-                document.getElementById('errorPopup').style.display = 'block';
-            }
-
-            // Function to close the error popup
-            function closePopup() {
-                document.getElementById('errorPopup').style.display = 'none';
-            }
-
-            // Check if there's an error message and show the popup
-            <?php if ($error !== '') : ?>
-                showErrorPopup();
-            <?php endif; ?>
-        });
-
-        // Define closePopup outside the DOMContentLoaded event listener
-        function closePopup() {
-            document.getElementById('errorPopup').style.display = 'none';
-        }
-    </script>
 </body>
 
 </html>
