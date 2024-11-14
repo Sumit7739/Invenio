@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Check if the user is not logged in
 if (!isset($_SESSION['id'])) {
     // Redirect to the login page or any other appropriate page
