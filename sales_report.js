@@ -1,152 +1,72 @@
-  // Define labels arrays
-  const labelsBL = ['bl5', 'bl6', 'bl7', 'bl9'];
-  const labelsSP = ['sp5', 'sp6', 'sp7', 'sp9'];
-  const labelsWL = ['wl5', 'wl6', 'wl7', 'wl9'];
-  const labelsLD = ['ld8', 'ld9', 'ld11', 'dld', 'pp'];
-  const labelsCups = ['cups50', 'cups60', 'cups80', 'cups100', 'cups150', 'cups210', 'cups250'];
-  const labelsBD = ['bd5', 'bd6', 'bd7'];
-  const labelsCP = ['cp5', 'cp6', 'cp7', 'cp9'];
+const ctx = document.getElementById('verticalChart').getContext('2d');
 
-  Chart.defaults.font.size = 35;
-  const options = {
-      // Other chart options
-      plugins: {
-          tooltip: {
-              bodyFont: {
-                  size: 30 // Increase tooltip body font size (default is 12)
-              },
-              titleFont: {
-                  size: 40 // Increase tooltip title font size (default is 16)
-              }
-          }
-      }
-  };
+// Data preparation: Flatten all item names and their corresponding values
+const labels = [
+    'BL5', 'BL6', 'BL7', 'BL9', // BL items
+    'SP5', 'SP6', 'SP7', 'SP9', // SP items
+    'WL5', 'WL6', 'WL7', 'WL9', // WL items
+    'LD8', 'LD9', 'LD11', 'DLD', 'PP', // LD items
+    '50ml', '60ml', '80ml', '100ml', '150ml', '210ml', '250ml', // Cups
+    'BD5', 'BD6', 'BD7', // BD items
+    'CP5', 'CP6', 'CP7', 'CP9' // CP items
+];
 
-  const inventoryBLChartCtx = document.getElementById('inventoryBLChart').getContext('2d');
-  const inventoryBLChart = new Chart(inventoryBLChartCtx, {
-      type: 'pie',
-      data: {
-          labels: labelsBL,
-          datasets: [{
-              label: 'Inventory BL Quantities',
-              backgroundColor: [
-                  'rgba(54, 162, 235, 0.6)',
-                  'rgba(255, 99, 132, 0.6)',
-                  'rgba(255, 206, 86, 0.6)',
-                  'rgba(75, 192, 192, 0.6)'
-              ],
-              data: Object.values(inventoryBLData)
-          }]
-      },
-      options: options // Use the defined options object here
-  });
+const dataValues = [
+    inventoryBLData.bl5, inventoryBLData.bl6, inventoryBLData.bl7, inventoryBLData.bl9,
+    inventorySPData.sp5, inventorySPData.sp6, inventorySPData.sp7, inventorySPData.sp9,
+    inventoryWLData.wl5, inventoryWLData.wl6, inventoryWLData.wl7, inventoryWLData.wl9,
+    inventoryLDData.ld8, inventoryLDData.ld9, inventoryLDData.ld11, inventoryLDData.dld, inventoryLDData.pp,
+    inventoryCupsData.cups50, inventoryCupsData.cups60, inventoryCupsData.cups80, inventoryCupsData.cups100, inventoryCupsData.cups150, inventoryCupsData.cups210, inventoryCupsData.cups250,
+    inventoryBDData.bd5, inventoryBDData.bd6, inventoryBDData.bd7,
+    inventoryCPData.cp5, inventoryCPData.cp6, inventoryCPData.cp7, inventoryCPData.cp9
+];
 
-  // Repeat for all other charts using the same options object
-
-  const inventorySPChartCtx = document.getElementById('inventorySPChart').getContext('2d');
-  const inventorySPChart = new Chart(inventorySPChartCtx, {
-      type: 'pie',
-      data: {
-          labels: labelsSP,
-          datasets: [{
-              label: 'Inventory SP Quantities',
-              backgroundColor: [
-                  'rgba(54, 162, 235, 0.6)',
-                  'rgba(255, 99, 132, 0.6)',
-                  'rgba(255, 206, 86, 0.6)',
-                  'rgba(75, 192, 192, 0.6)'
-              ],
-              data: Object.values(inventorySPData)
-          }]
-      }
-  });
-
-  const inventoryWLChartCtx = document.getElementById('inventoryWLChart').getContext('2d');
-  const inventoryWLChart = new Chart(inventoryWLChartCtx, {
-      type: 'pie',
-      data: {
-          labels: labelsWL,
-          datasets: [{
-              label: 'Inventory WL Quantities',
-              backgroundColor: [
-                  'rgba(54, 162, 235, 0.6)',
-                  'rgba(255, 99, 132, 0.6)',
-                  'rgba(255, 206, 86, 0.6)',
-                  'rgba(75, 192, 192, 0.6)'
-              ],
-              data: Object.values(inventoryWLData)
-          }]
-      }
-  });
-
-  const inventoryLDChartCtx = document.getElementById('inventoryLDChart').getContext('2d');
-  const inventoryLDChart = new Chart(inventoryLDChartCtx, {
-      type: 'pie',
-      data: {
-          labels: labelsLD,
-          datasets: [{
-              label: 'Inventory LD Quantities',
-              backgroundColor: [
-                  'rgba(54, 162, 235, 0.6)',
-                  'rgba(255, 99, 132, 0.6)',
-                  'rgba(255, 206, 86, 0.6)',
-                  'rgba(75, 192, 192, 0.6)'
-              ],
-              data: Object.values(inventoryLDData)
-          }]
-      }
-  });
-
-  const inventoryCupsChartCtx = document.getElementById('inventoryCupsChart').getContext('2d');
-  const inventoryCupsChart = new Chart(inventoryCupsChartCtx, {
-      type: 'pie',
-      data: {
-          labels: labelsCups,
-          datasets: [{
-              label: 'Inventory Cups Quantities',
-              backgroundColor: [
-                  'rgba(54, 162, 235, 0.6)',
-                  'rgba(255, 99, 132, 0.6)',
-                  'rgba(255, 206, 86, 0.6)',
-                  'rgba(75, 192, 192, 0.6)'
-              ],
-              data: Object.values(inventoryCupsData)
-          }]
-      }
-  });
-
-  const inventoryBDChartCtx = document.getElementById('inventoryBDChart').getContext('2d');
-  const inventoryBDChart = new Chart(inventoryBDChartCtx, {
-      type: 'pie',
-      data: {
-          labels: labelsBD,
-          datasets: [{
-              label: 'Inventory BD Quantities',
-              backgroundColor: [
-                  'rgba(54, 162, 235, 0.6)',
-                  'rgba(255, 99, 132, 0.6)',
-                  'rgba(255, 206, 86, 0.6)',
-                  'rgba(75, 192, 192, 0.6)'
-              ],
-              data: Object.values(inventoryBDData)
-          }]
-      }
-  });
-
-  const inventoryCPChartCtx = document.getElementById('inventoryCPChart').getContext('2d');
-  const inventoryCPChart = new Chart(inventoryCPChartCtx, {
-      type: 'pie',
-      data: {
-          labels: labelsCP,
-          datasets: [{
-              label: 'Inventory CP Quantities',
-              backgroundColor: [
-                  'rgba(54, 162, 235, 0.6)',
-                  'rgba(255, 99, 132, 0.6)',
-                  'rgba(255, 206, 86, 0.6)',
-                  'rgba(75, 192, 192, 0.6)'
-              ],
-              data: Object.values(inventoryCPData)
-          }]
-      }
-  });
+// Generate the chart
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Inventory Data',
+                data: dataValues,
+                backgroundColor: [
+                    '#007bff', '#007bff', '#007bff', '#007bff', // BL (blue)
+                    '#28a745', '#28a745', '#28a745', '#28a745', // SP (green)
+                    '#ffc107', '#ffc107', '#ffc107', '#ffc107', // WL (yellow)
+                    '#dc3545', '#dc3545', '#dc3545', '#dc3545', '#dc3545', // LD (red)
+                    '#6f42c1', '#6f42c1', '#6f42c1', '#6f42c1', '#6f42c1', '#6f42c1', '#6f42c1', // Cups (purple)
+                    '#17a2b8', '#17a2b8', '#17a2b8', // BD (teal)
+                    '#fd7e14', '#fd7e14', '#fd7e14', '#fd7e14' // CP (orange)
+                ]
+            }
+        ]
+    },
+    options: {
+        indexAxis: 'y', // Switch axis to make it vertical
+        responsive: true,
+        plugins: {
+            legend: {
+                display: false // No need for a legend since categories are clear
+            },
+            tooltip: {
+                enabled: true
+            }
+        },
+        scales: {
+            x: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Quantity'
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: 'Items'
+                }
+            }
+        }
+    }
+});

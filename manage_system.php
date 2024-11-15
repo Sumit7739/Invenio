@@ -149,7 +149,7 @@ $conn->close();
                     <!-- Home Link -->
                     <li>
                         <span class="icon material-icons">home</span>
-                        <span class="text">Home</span>
+                        <span class="text active">Home</span>
                     </li>
 
                     <!-- Inventory Section with Submenu -->

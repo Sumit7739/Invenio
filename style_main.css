@@ -103,6 +103,13 @@ body {
     background-color: #575757;
 }
 
+.submenu .active {
+    color: rgb(43, 255, 0);
+}
+
+.active {
+    color: rgb(43, 255, 0);
+}
 
 li.has-submenu:hover .submenu {
     opacity: 1;
