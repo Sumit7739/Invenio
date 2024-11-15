@@ -228,6 +228,7 @@ $conn->close();
                         <span class="text">Extra</span>
                         <div class="submenu">
                             <a href="notifications.php">Notifications</a>
+                            <a href="view_query.php">Query</a>
                         </div>
                     </li>
                 </ul>
