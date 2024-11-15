@@ -1,101 +1,212 @@
-/* .query-cards-container {
-            max-width: 100%;
-            margin: 50px 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 0 20px;
-        } */
+<!DOCTYPE html>
+<html lang="en">
 
-        /* .query-card {
-            width: calc(100% - 10px);
-            margin-bottom: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to the external CSS file -->
+    <script src="script.js" defer></script> <!-- Link to the external JavaScript file -->
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .query-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .query-card-content {
-            padding: 20px;
-            
-        }
-
-        .query-card p {
-            margin: 10px 0;
-        }
-
-        .overlay {
-            display: none;
+        /* Sidebar Styling */
+        .sidebar {
+            width: 250px;
+            background-color: #111;
+            color: #fff;
+            padding: 10px;
             position: fixed;
+            height: 100%;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
+            font-family: Arial, sans-serif;
         }
 
-        .popup {
+        .sidebar-item {
+            margin-bottom: 15px;
+        }
+
+        .sidebar-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .sidebar-link:hover {
+            background-color: #575757;
+        }
+
+        .submenu {
             display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 300px;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
+            margin-left: 20px;
+        }
+
+        .submenu a {
+            font-size: 16px;
+            padding: 8px 10px;
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        .submenu a:hover {
+            background-color: #575757;
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            margin-left: 270px;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
+            font-family: Arial, sans-serif;
         }
 
-        .status-dot {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 5px;
-            vertical-align: middle;
+        header {
+            margin-bottom: 30px;
         }
 
-        button {
-            background-color: transparent;
-            border: 1px solid #ccc;
-            border-radius: 15px;
-            padding: 5px 10px;
-            color: #000;
-            background-color: #fff;
-            cursor: pointer;
-            font-size: 14px;
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        h1 {
+            font-size: 2rem;
         }
 
-        button:hover {
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
         }
 
-        .mark-resolved-btn,
-        .delete-btn {
-            margin: 5px;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
+        h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
         }
 
-        .mark-resolved-btn {
-            background-color: #4caf50;
-            color: white;
+        .content-overview {
+            display: flex;
+            gap: 20px;
         }
 
-        .delete-btn {
-            background-color: #f44336;
-            color: white;
-        } */
+        .overview-box {
+            width: 48%;
+            padding: 15px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-details {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+            }
+
+            .content-overview {
+                flex-direction: column;
+            }
+
+            .overview-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-item">
+            <a href="javascript:void(0);" class="sidebar-link" onclick="toggleSubmenu('inventory')">Inventory</a>
+            <div id="inventory" class="submenu">
+                <a href="add_inventory.html">Add Inventory</a>
+                <a href="add_more_items.html">Add More Items</a>
+                <a href="view_inventory.html">View Inventory</a>
+            </div>
+        </div>
+
+        <div class="sidebar-item">
+            <a href="javascript:void(0);" class="sidebar-link" onclick="toggleSubmenu('sales')">Sales</a>
+            <div id="sales" class="submenu">
+                <a href="add_sales.html">Add Sales</a>
+                <a href="view_sales.html">View Sales</a>
+            </div>
+        </div>
+
+        <div class="sidebar-item">
+            <a href="javascript:void(0);" class="sidebar-link" onclick="toggleSubmenu('stock')">Stock</a>
+            <div id="stock" class="submenu">
+                <!-- Add stock-related links if any -->
+            </div>
+        </div>
+
+        <div class="sidebar-item">
+            <a href="reports.html">Reports</a>
+        </div>
+
+        <div class="sidebar-item">
+            <a href="tables.html">Tables</a>
+        </div>
+
+        <div class="sidebar-item">
+            <a href="javascript:void(0);" class="sidebar-link" onclick="toggleSubmenu('settings')">Settings</a>
+            <div id="settings" class="submenu">
+                <a href="see_users.html">See Users</a>
+                <a href="logout.html">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div id="main-content" class="main-content">
+        <header>
+            <h1>Welcome to the Dashboard</h1>
+            <p>Manage your data easily using the sidebar links.</p>
+        </header>
+
+        <section class="content-overview">
+            <h2>Quick Overview</h2>
+            <div class="overview-box">
+                <h3>Recent Activity</h3>
+                <p>Check out the latest updates from Inventory, Sales, and Stock.</p>
+            </div>
+
+            <div class="overview-box">
+                <h3>Reports</h3>
+                <p>Access and generate various reports.</p>
+            </div>
+        </section>
+
+        <section class="content-details">
+            <h2>Detailed Information</h2>
+            <p>Use the sidebar to navigate to more detailed sections, like adding inventory, managing sales, and reviewing stock.</p>
+        </section>
+    </div>
+    <script>
+        function toggleSubmenu(id) {
+            var submenu = document.getElementById(id);
+            if (submenu.style.display === "block") {
+                submenu.style.display = "none";
+            } else {
+                submenu.style.display = "block";
+            }
+        }
+    </script>
+</body>
+
+</html>

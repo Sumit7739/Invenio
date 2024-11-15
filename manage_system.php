@@ -51,6 +51,50 @@ if ($updatesResult->num_rows > 0) {
 // Count the number of updates
 $notificationCount = count($updates);
 
+// Fetch today's and this week's entries for Inventory and Sales
+$today = date('Y-m-d');  // Current date
+$lastWeek = date('Y-m-d', strtotime('-1 week'));  // Date for last week
+
+// Query for inventory entries today
+$query_inventory_today = "SELECT COUNT(*) FROM inventory_item WHERE DATE(date) = '$today'";
+$result_inventory_today = mysqli_query($conn, $query_inventory_today);
+$inventoryToday = mysqli_fetch_assoc($result_inventory_today)['COUNT(*)'];
+
+// Query for inventory entries in the last week
+$query_inventory_week = "SELECT COUNT(*) FROM inventory_item WHERE DATE(date) BETWEEN '$lastWeek' AND '$today'";
+$result_inventory_week = mysqli_query($conn, $query_inventory_week);
+$inventoryThisWeek = mysqli_fetch_assoc($result_inventory_week)['COUNT(*)'];
+
+// Query for 2nd table of inventory entries today
+$query_moreinventory_today = "SELECT COUNT(*) FROM moreinventory_item WHERE DATE(date) = '$today'";
+$result_moreinventory_today = mysqli_query($conn, $query_moreinventory_today);
+$moreinventoryToday = mysqli_fetch_assoc($result_moreinventory_today)['COUNT(*)'];
+
+// Query for inventory entries in the last week
+$query_moreinventory_week = "SELECT COUNT(*) FROM moreinventory_item WHERE DATE(date) BETWEEN '$lastWeek' AND '$today'";
+$result_moreinventory_week = mysqli_query($conn, $query_moreinventory_week);
+$moreinventoryThisWeek = mysqli_fetch_assoc($result_moreinventory_week)['COUNT(*)'];
+
+// Query for sales entries today
+$query_sales_today = "SELECT COUNT(*) FROM sales_item WHERE DATE(date) = '$today'";
+$result_sales_today = mysqli_query($conn, $query_sales_today);
+$salesToday = mysqli_fetch_assoc($result_sales_today)['COUNT(*)'];
+
+// Query for sales entries in the last week
+$query_sales_week = "SELECT COUNT(*) FROM sales_item WHERE DATE(date) BETWEEN '$lastWeek' AND '$today'";
+$result_sales_week = mysqli_query($conn, $query_sales_week);
+$salesThisWeek = mysqli_fetch_assoc($result_sales_week)['COUNT(*)'];
+
+// Query for 2nd sales entries today
+$query_moresales_today = "SELECT COUNT(*) FROM moresales_item WHERE DATE(date) = '$today'";
+$result_moresales_today = mysqli_query($conn, $query_moresales_today);
+$moresalesToday = mysqli_fetch_assoc($result_moresales_today)['COUNT(*)'];
+
+// Query for 2nd sales entries in the last week
+$query_moresales_week = "SELECT COUNT(*) FROM moresales_item WHERE DATE(date) BETWEEN '$lastWeek' AND '$today'";
+$result_moresales_week = mysqli_query($conn, $query_moresales_week);
+$moresalesThisWeek = mysqli_fetch_assoc($result_moresales_week)['COUNT(*)'];
+
 // Close the database connection
 $conn->close();
 ?>
@@ -65,21 +109,14 @@ $conn->close();
     <title>Inventory Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style_main.css">
 </head>
 
 <body>
-    <div class="container">
-        <header>
+    <div class="containerr">
+        <header class="header">
             <h1>PPWALA</h1>
-            <div class="icon-container">
-                <a href="view_query.php">
-                    <i class="fas fa-comment" id="query-icon"></i>
-                    <?php if ($queryCount > 0) : ?>
-                        <span class="icon-count"><?php echo $queryCount; ?></span>
-                    <?php endif; ?>
-                </a>
-            </div>
             <div class="notification-icon-container">
                 <i class="fas fa-bell" id="notification-icon"></i>
                 <?php if ($notificationCount > 0) : ?>
@@ -87,8 +124,6 @@ $conn->close();
                 <?php endif; ?>
                 </i>
             </div>
-        </header>
-
         </header>
 
         <div id="notification-dropdown">
@@ -107,140 +142,165 @@ $conn->close();
             <?php endif; ?>
             <a href="notifications.php" class="view-all-link">View All Notifications</a>
         </div>
+        <!-- Sidebar structure -->
+        <div class="sidebar">
+            <div class="wrapper">
+                <ul>
+                    <!-- Home Link -->
+                    <li>
+                        <span class="icon material-icons">home</span>
+                        <span class="text">Home</span>
+                    </li>
+
+                    <!-- Inventory Section with Submenu -->
+                    <li class="has-submenu">
+                        <span class="icon material-icons">inventory</span>
+                        <span class="text">Inventory</span>
+                        <div class="submenu">
+                            <a href="add_inventory.php">Add Inventory</a>
+                            <a href="addmore_inventory.php">Add More Items</a>
+                            <a href="view_inventory.php">View Inventory</a>
+                            <a href="view_moreinventory.php">View 2nd Inventory</a>
+                        </div>
+                    </li>
+
+                    <!-- Sales Section with Submenu -->
+                    <li class="has-submenu">
+                        <span class="icon material-icons">trending_up</span>
+                        <span class="text">Sales</span>
+                        <div class="submenu">
+                            <a href="sales.php">Add Sales</a>
+                            <a href="moresales.php">Add More Sales</a>
+                            <a href="view_sales.php">View Sales</a>
+                            <a href="view_moresales.php">View More Sales</a>
+
+                        </div>
+                    </li>
+
+                    <!-- Stock Section (Placeholder for future use) -->
+                    <li class="has-submenu">
+                        <span class="icon material-icons">store</span>
+                        <span class="text">Stock</span>
+                        <div class="submenu">
+                            <a href="stock.php">Stock Table</a>
+                            <a href="more_stock.php">2nd Stock Table</a>
+
+                        </div>
+                    </li>
+
+                    <!-- Reports Link -->
+                    <li class="has-submenu">
+                        <span class="icon material-icons">bar_chart</span>
+                        <span class="text">Reports</span>
+                        <div class="submenu">
+                            <a href="sales_report.php">Sales Report</a>
+                            <a href="more_sales_report.php">2nd Sales Report</a>
+                            <a href="inventory_report.php">Inventory Report</a>
+                            <a href="more_inventory_report.php">2nd Inventory Report</a>
+                        </div>
+                    </li>
+
+                    <!-- Tables Link -->
+                    <li class="has-submenu">
+                        <span class="icon material-icons">table_chart</span>
+                        <span class="text">Tables</span>
+                        <div class="submenu">
+                            <a href="sales_table.php">Sales Table</a>
+                            <a href="more_sales_table.php">2nd Sales Table</a>
+                            <a href="inventory_table.php">Inventory Table</a>
+                            <a href="more_inventory_table.php">2nd Inventory Table</a>
+                        </div>
+                    </li>
+
+                    <!-- Settings Section with Submenu -->
+                    <li class="has-submenu">
+                        <span class="icon material-icons">settings</span>
+                        <span class="text">Settings</span>
+                        <div class="submenu">
+                            <a href="users.php">See Users</a>
+                            <a href="logout.php">Logout</a>
+                        </div>
+                    </li>
+
+                    <!-- Help Link -->
+                    <li class="has-submenu">
+                        <span class="icon material-icons">info</span>
+                        <span class="text">Extra</span>
+                        <div class="submenu">
+                            <a href="notifications.php">Notifications</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
         <div class="content">
             <h3>Welcome <?php echo $name; ?></h3>
             <h4>Role - <?php echo $role; ?> </h4>
             <p>Welcome to your inventory management system. It help businesses organize and track their inventory
                 efficiently.</p>
-            <div class="features">
-                <div class="feature-box">
-                    <i class="fas fa-box"></i>
-                    <h3>Manage Inventory</h3>
-                    <p>Easily add, update, and track your inventory items.</p>
-                    <div class="feature-row">
-                        <div class="small-box">
-                            <a href="add_inventory.php">Add Inventory</a>
-                            <p>Quickly enter new inventory items.</p>
-                        </div>
-                        <div class="small-box">
-                            <a href="addmore_inventory.php">Add More Items</a>
-                            <p>Quickly enter more new inventory items.</p>
-                        </div>
-                        <div class="small-box">
-                            <a href="view_inventory.php">View Inventory</a>
-                            <p>Access and view your inventory details.</p>
-                        </div>
-                        <div class="small-box">
-                            <a href="view_moreinventory.php">View 2nd Inventory</a>
-                            <p>Access and view your inventory details.</p>
-                        </div>
-                    </div>
+        </div>
+
+        <div class="dashboard">
+            <!-- Inventory Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h4>Inventory</h4>
                 </div>
-                <div class="feature-box">
-                    <i class="fas fa-dollar-sign"></i>
-                    <h3>Manage Sales</h3>
-                    <p>Easily add, update, and track your sales records.</p>
-                    <div class="feature-row">
-                        <div class="small-box">
-                            <a href="sales.php">Add Sales</a>
-                            <p>Quickly enter new sales records.</p>
-                        </div>
-                        <div class="small-box">
-                            <a href="moresales.php">Add More Sales</a>
-                            <p>Quickly enter new sales records.</p>
-                        </div>
-                        <div class="small-box">
-                            <a href="view_sales.php">View Sales</a>
-                            <p>Access and view your sales details.</p>
-                        </div>
-                        <div class="small-box">
-                            <a href="view_moresales.php">View More Sales</a>
-                            <p>Access and view your sales details.</p>
-                        </div>
-                    </div>
+                <div class="card-body">
+                    <p><strong>Entries Today:</strong> <?php echo $inventoryToday; ?></p>
+                    <p><strong>Total Entries This Week:</strong> <?php echo $inventoryThisWeek; ?></p>
                 </div>
-                <div class="feature-box">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Stock Tables</h3>
-                    <p>Get detailed reports and insights into your Stocks.</p>
-                    <div class="small-box">
-                        <a href="stock.php">Stock Table</a>
-                        <p>Quickly view new Stocks reports.</p>
-                    </div>
-                    <div class="small-box">
-                        <a href="more_stock.php">2nd Stock Table</a>
-                        <p>Quickly view new Stocks reports.</p>
-                    </div>
+            </div>
+            <!-- 2nd table -->
+            <div class="card">
+                <div class="card-header">
+                    <h4>2nd Inventory Table</h4>
                 </div>
-                <div class="feature-box">
-                    <i class="fas fa-chart-bar"></i>
-                    <h3>Generate Reports</h3>
-                    <p>Get detailed reports and insights into your inventory performance.</p>
-                    <div class="feature-row">
-                        <div class="small-box">
-                            <a href="sales_report.php">Sales Report</a>
-                            <p>Quickly enter new sales records.</p>
-                        </div>
-                        <div class="small-box">
-                            <a href="more_sales_report.php">2nd Sales Report</a>
-                            <p>Quickly enter new sales records.</p>
-                        </div>
-                        <div class="small-box">
-                            <a href="inventory_report.php">Inventory Report</a>
-                            <p>Access and view your sales details.</p>
-                        </div>
-                        <div class="small-box">
-                            <a href="more_inventory_report.php">2nd Inventory Report</a>
-                            <p>Access and view your sales details.</p>
-                        </div>
-                    </div>
+                <div class="card-body">
+                    <p><strong>Entries Today:</strong> <?php echo $moreinventoryToday; ?></p>
+                    <p><strong>Total Entries This Week:</strong> <?php echo $moreinventoryThisWeek; ?></p>
                 </div>
-                <div class="feature-box">
-                    <i class="fas fa-table"></i>
-                    <h3>Tables</h3>
-                    <p>Get detailed reports and insights into your Sales performance.</p>
-                    <div class="small-box">
-                        <a href="sales_table.php">Sales Table</a>
-                        <p>Quickly view new sales records.</p>
-                    </div>
-                    <div class="small-box">
-                        <a href="more_sales_table.php">2nd Sales Table</a>
-                        <p>Quickly view new sales records.</p>
-                    </div>
-                    <div class="small-box">
-                        <a href="inventory_table.php">Inventory Table</a>
-                        <p>Access and view your Inventory details.</p>
-                    </div>
-                    <div class="small-box">
-                        <a href="more_inventory_table.php">Inventory Table</a>
-                        <p>Access and view your Inventory details.</p>
-                    </div>
+            </div>
+
+            <!-- Sales Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h4>Sales</h4>
                 </div>
-                <div class="feature-box">
-                    <i class="fas fa-box"></i>
-                    <h3>Extra Tools</h3>
-                    <p>Access additional features and tools to enhance your inventory management experience</p>
-                    <div class="small-box">
-                        <a href="users.php" class="logout-bt">
-                            <i class="fas fa-user"></i> See Users
-                        </a>
-                        <p>Quickly view users record.</p>
-                    </div>
-                    <div class="small-box">
-                        <a href="game.html" class="logout-bt">
-                            <i class="fas fa-gamepad"></i> Play Game
-                        </a>
-                        <p>Play simple games to pass time.</p>
-                    </div>
-                    <div class="small-box">
-                        <a href="logout.php" class="logout-bt">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
-                        <p>Logout from the session</p>
-                    </div>
+                <div class="card-body">
+                    <p><strong>Entries Today:</strong> <?php echo $salesToday; ?></p>
+                    <p><strong>Total Entries This Week:</strong> <?php echo $salesThisWeek; ?></p>
+                </div>
+            </div>
+            <!-- 2nd sales table -->
+            <div class="card">
+                <div class="card-header">
+                    <h4>2nd Sales Table</h4>
+                </div>
+                <div class="card-body">
+                    <p><strong>Entries Today:</strong> <?php echo $moresalesToday; ?></p>
+                    <p><strong>Total Entries This Week:</strong> <?php echo $moresalesThisWeek; ?></p>
                 </div>
             </div>
         </div>
+
+        <h2>Quick Links Section</h2>
+        <br>
+        <div class="quick-links">
+            <div class="link-item">
+                <h4>Inventory</h4>
+                <a href="add_inventory.php">Add Inventory</a>
+                <a href="view_inventory.php">View Inventory</a>
+            </div>
+            <div class="link-item">
+                <h4>Sales</h4>
+                <a href="sales.php">Add Sales</a>
+                <a href="view_sales.php">View Sales</a>
+            </div>
+        </div>
+
         <footer>
             <p>Created by <a href="submitupdates.html">Sumit</a> </p>
             <p class="footer-text">© 2024 Inventory Management System. All rights reserved.</p>
@@ -248,6 +308,18 @@ $conn->close();
 
 
         <script src="manage_system.js"></script>
+        <script>
+            document.querySelectorAll('.has-submenu').forEach(item => {
+                item.addEventListener('click', () => {
+                    const submenu = item.querySelector('.submenu');
+                    if (submenu.style.display === "block") {
+                        submenu.style.display = "none";
+                    } else {
+                        submenu.style.display = "block";
+                    }
+                });
+            });
+        </script>
 </body>
 
 </html>

@@ -8,7 +8,145 @@
     <title>Inventory Management System</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(90deg, #0052D4, #65C7F7);
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            margin-top: 5px;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        .feature {
+            display: inline-block;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px;
+            max-width: 250px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .icon {
+            font-size: 3em;
+            color: #0052D4;
+        }
+
+        .text {
+            font-size: 1em;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        .action-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #65C7F7, #0052D4);
+            color: white;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: linear-gradient(90deg, #0052D4, #65C7F7);
+        }
+
+        .features-section,
+        .about-section,
+        .testimonials-section,
+        .contact-section {
+            margin: 40px 0;
+        }
+
+        .features-heading,
+        .about-heading,
+        .testimonials-heading,
+        .contact-heading {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .about-text {
+            margin: 0 auto;
+            max-width: 600px;
+            font-size: 1em;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .testimonial {
+            display: inline-block;
+            text-align: left;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px;
+            max-width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial p {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        .testimonial .name {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #0052D4;
+        }
+
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 20px 10px;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #65C7F7;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,38 +154,61 @@
         <div class="logo">Inventory Management System</div>
         <div class="subtitle">Manage Your Inventory Efficiently</div>
     </header>
-    <div class="container">
+
+    <div class="container features-section">
+        <h2 class="features-heading">Key Features</h2>
         <div class="feature">
             <span class="icon material-icons">list_alt</span>
-            <span class="text">Manage your inventory efficiently with our system.</span>
+            <span class="text">Efficiently manage your inventory with a streamlined interface.</span>
         </div>
         <div class="feature">
             <span class="icon material-icons">track_changes</span>
-            <span class="text">Track changes and updates in real-time.</span>
+            <span class="text">Track updates in real-time for accurate decisions.</span>
         </div>
         <div class="feature">
             <span class="icon material-icons">trending_up</span>
-            <span class="text">Analyze trends and make informed decisions.</span>
+            <span class="text">Analyze trends and optimize your inventory strategy.</span>
         </div>
         <div>
             <a href="login.php" class="action-btn">Login <span class="material-icons">login</span></a>
             <a href="signup.php" class="action-btn">Signup <span class="material-icons">person_add</span></a>
-            <!-- <a href="https://sumit7739.github.io/Invenio/app.html" download="PPWALA.apk" class="action-btn">Download App
-                <span class="material-icons">file_download</span>
-            </a> -->
         </div>
     </div>
+
+
+    <div class="container about-section">
+        <h2 class="about-heading">About Us</h2>
+        <p class="about-text">
+            Our Inventory Management System is designed to make inventory management effortless. With real-time
+            tracking, insightful analytics, and user-friendly features, we help businesses thrive in a competitive
+            world.
+        </p>
+    </div>
+
+    <div class="container testimonials-section">
+        <h2 class="testimonials-heading">What Our Users Say</h2>
+        <div class="testimonial">
+            <p>"This system revolutionized the way we manage inventory. Highly recommended!"</p>
+            <br>
+            <span class="name">- Rakesh Kumar</span>
+        </div>
+        <div class="testimonial">
+            <p>"Efficient and easy to use. A must-have for every business."</p>
+            <br>
+            <span class="name">- Prabhat Anand</span>
+        </div>
+    </div>
+
+    <div class="container contact-section">
+        <h2 class="contact-heading">Contact Us</h2>
+        <p class="about-text">Need help? Contact us at <a href="mailto:support@inventory.com">srisumit96@gmail.com</a>.
+        </p>
+    </div>
+
     <footer>
         <p class="footer-text">© 2024 Inventory Management System. All rights reserved.</p>
-        <p>Created by Sumit Srivastava</p>
+        <p>Created by <a href="https://github.com/Sumit7739">Sumit Srivastava</a></p>
     </footer>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js')
-                .then(() => console.log('Service Worker registered successfully.'))
-                .catch(error => console.log('Service Worker registration failed:', error));
-        }
-    </script>
 </body>
 
 </html>
